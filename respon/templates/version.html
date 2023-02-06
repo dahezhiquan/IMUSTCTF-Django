@@ -1,0 +1,115 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block title %}
+    版本日历 - IMUSTCTF
+{% endblock %}
+{% block information %}
+    active
+{% endblock %}
+{% block information_user %}
+    active
+{% endblock %}
+{% block information_user_version %}
+    active
+{% endblock %}
+{% block csslist %}
+    <link rel='stylesheet' href='{% static 'css/history.css' %}' type='text/css' media='all'/>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type='text/javascript'
+            src='https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/lodash.js/4.17.21/lodash.min.js'></script>
+    <script type='text/javascript' src='{% static 'js/TweenMax.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/DrawSVGPlugin.js' %}'></script>
+    <script type='text/javascript' src='{% static 'js/namespaces.js' %}'></script>
+    <script type="text/javascript">
+        function preload_images(images, functions) {
+            if (typeof functions === 'undefined') functions = {};
+            var loaded = 0;
+            for (var i = 0; i < images.length; i++) {
+                ////console.log('preload '+images[i]);
+                var img = new Image();
+                img.onload = img.onerror = function () {
+                    ////console.log(img.src + ' loaded');
+                    var onImgParams = {
+                        //img : img,
+                        //index : i,
+                        loadedPct: (loaded / images.length)
+                    };
+                    if (_.isFunction(functions.onImgLoad)) functions.onImgLoad(onImgParams);
+
+                    loaded++;
+                    if (loaded >= images.length && _.isFunction(functions.onAllImgsLoaded)) {
+                        ////console.log('all imgs loaded');
+                        functions.onAllImgsLoaded()
+                    }
+                };
+                img.src = images[i];
+            }// endfor
+        }// preload_images()
+    </script>
+{% endblock %}
+
+
+{% block main %}
+<div id="page" class="site">
+    <div id="content" class="site-content">
+        <div class="content-block history">
+            <div class="content-wrap small-wrap vert-spaced lined">
+                <div class="columns">
+                    <div class="col third middled copy-col onScrollEnter">
+                        <h4 class="chapter-headline">v1.0</h4>
+                        <p class="chapter-copy s-text top-spaced">2022/06/16,IMUSTCTF正式开源，发布1.0版本</p>
+                    </div>
+                    <!-- .col -->
+                    <div class="col two-thirds middled ui-col rel onScrollEnter">
+                        <div class="chapter-image img imgfill"
+                             style="background-image:url('{% static 'images/v1.0.jpg' %}');"></div>
+                        <div class="timeline-container circle-timelines">
+                            <div class="fill-parent ui-timelines">
+                                <svg version="1.1" id="Layer_1" x="0px" y="0px"
+                                     viewBox="0 0 600 600" style="enable-background:new 0 0 600 600;"
+                                     xml:space="preserve">
+                  <circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="300" cy="300" r="300"/>
+                </svg>
+                                <svg version="1.1" id="Layer_1" x="0px" y="0px"
+                                     viewBox="0 0 600 600" style="enable-background:new 0 0 600 600;"
+                                     xml:space="preserve">
+                  <circle fill="none" stroke="#000000" stroke-miterlimit="10" cx="300" cy="300" r="300"/>
+                </svg>
+                            </div>
+                            <!-- .ui-timelines -->
+                            <div class="ui-chapters fill-parent">
+                                <div class="ui-chapter current-chapter"><span class="chapter-point">55</span> <span
+                                        class="chapter-label">v1.0</span>
+                                </div>
+                                <div class="ui-chapter"><span class="chapter-point"></span> <span class="chapter-label">v1.1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block jslist %}
+    <script type='text/javascript' src='{% static 'js/history.js' %}'></script>
+    <script type='text/javascript'>
+        var _history_data = [
+            {
+                "title": "v1.0",
+                "copy": "2022/06/15,IMUSTCTF正式开源，发布1.0版本",
+                "img": {"src": "{% static 'images\/v1.0.jpg' %}"}
+            },
+            {
+                "title": "v1.1",
+                "copy": "2022/06/16,版本日历上线，用户可查看IMUSTCTF各个版本的更替信息",
+                "img": {"src": "{% static 'images\/v1.1.jpg' %}"}
+            },
+        ];
+    </script>
+    <script type='text/javascript' src='{% static 'js/page_about.js' %}'></script>
+{% endblock %}
+
+

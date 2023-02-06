@@ -1,0 +1,73 @@
+{% extends "nav.html" %}
+
+{% load static %}
+{% block information %}
+    active
+{% endblock %}
+{% block information_events %}
+    active
+{% endblock %}
+{% block title %}
+    大事件日历 - IMUSTCTF
+{% endblock %}
+{% block cssList_end %}
+    <!-- CSS  -->
+    <link rel="stylesheet" href="{% static 'assetstwo/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assetstwo/css/uikit.min.css' %}">
+{% endblock %}
+
+{% block main %}
+    <!--倒计时页面-->
+    <div uk-height-viewport="offset-top: true; offset-bottom: true"
+         class="uk-flex uk-flex-middle bg-gradient-primary uk-text-center  px-4">
+        <div class="container-small m-auto ">
+            <div class="uk-light mb-lg-8">
+                <h1>距离 <strong>2022国家Hvv还有：</strong></h1>
+                <p class="mb-0" style="color:white;"> 守护中国网络空间安全 <br
+                        class="uk-visible@s">
+                    没有网络安全就没有国家安全</p>
+            </div>
+            <!--时间设置-->
+            <div class="uk-grid-small uk-child-width-auto@s uk-child-width-1-4 uk-margin countdown" uk-grid
+                 uk-countdown="date: 2022-07-15T00:00:00+00:00">
+                <div>
+                    <div class="box">
+                        <div class="uk-countdown-number uk-countdown-days"></div>
+                        <div class="countdown-text">
+                            <p> DAYS</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <div class="uk-countdown-number uk-countdown-hours"></div>
+                        <div class="countdown-text">
+                            <p> HOURS</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <div class="uk-countdown-number uk-countdown-minutes"></div>
+                        <div class="countdown-text">
+                            <p> MINUTES</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <div class="uk-countdown-number uk-countdown-seconds"></div>
+                        <div class="countdown-text">
+                            <p> SECONDS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--倒计时页面结束-->
+    <!-- javaScripts -->
+    <script src="{% static 'assetstwo/js/uikit.min.js' %}"></script>
+    <script src="{% static 'assetstwo/js/jquery-3.3.1.min.js' %}"></script>
+
+{% endblock %}
