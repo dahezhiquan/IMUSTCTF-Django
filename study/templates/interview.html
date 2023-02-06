@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>interview - IMUSTCTF</title>
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+    <!--网站logo图片 -->
+
+    <!--页面css-->
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/app.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/theme/default-theme.css' %}">
+
+</head>
+
+<body class="default-theme">
+
+<div class="main-wrapper">
+    <div class="chatapp">
+        <nav id="navbar" class="navbar navbar-expand-md navbar-light fixed-top bg-white border-bottom shadow-sm"><a
+                class="navbar-brand" href="/"><img src="http://101.42.155.61/static/logo.png" width="50" height="50"
+                                                   class="d-inline-block align-top" alt="">
+            <h1>IMUSTCTF - interview</h1>
+        </a>
+            <div class="ml-auto d-flex align-items-center">
+                <div class="iconbox iconbox-search btn-hovered-light"><i class="iconbox__icon mdi mdi-magnify"></i>
+                </div>
+                <div class="navbar-nav">
+                    <div class="iconbox-group">
+                        <div class="iconbox btn-hovered-light"><i class="iconbox__icon mdi mdi-dots-vertical"></i></div>
+                    </div>
+                    <!--顶部搜索-->
+                    <div class="iconbox-searchbar">
+                        <form>
+                            <input type="text" class="form-control" placeholder="在这里搜索..." autofocus>
+                            <button class="search-submit" type="submit"><i class="mdi mdi-magnify"></i></button>
+                            <a href="javascript:void(0)" class="search-close"><i class="mdi mdi-arrow-left"></i></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="chatapp__content">
+            <div class="taskmanager-wrapper">
+                <div class="container-fluid">
+                    <div class="row pt-3 mb-5">
+                        <!-- 网络安全方向面试列表 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="taskpanel-title">网络安全方向</div>
+                            <button class="btn btn-primary-light newtaskbtn btn-block mb-3">
+                                <span>安服，渗透测试工程师，HW工程师</span></button>
+                            <div class="taskpanel" id="taskList">
+                                {% for security in securityList %}
+                                    <div class="taskcard">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="taskname">{{ security.1 }}</div>
+                                                <a href="/study/call/?project={{ security.1 }}&id=1">参加面试</a>
+                                                <div class="collapse" id="collapseExample{{ security.0 }}">
+                                                    <div class="task-details__title">发布时间</div>
+                                                    <div class="taskenddate">{{ security.4 }}</div>
+                                                    <div class="task-details__title">来源</div>
+                                                    <div class="user-avatar-group">
+                                                        <a href="javascript:;"
+                                                           class="user-avatar user-avatar-rounded  avatar-info"><span>{{ security.5 }}</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer taskpanel-footer">
+                                                <div class="checklist-number">{{ security.3 }}</div>
+                                            </div>
+                                            <div class="taskcard-dragger"><i class="mdi mdi-drag-horizontal"></i></div>
+                                            <div class="taskcard-ribbon"><span
+                                                    class="badge badge-{{ security.2 }}">{{ security.2 }}</span></div>
+                                            <div class="task-expander" role="button" data-toggle="collapse"
+                                                 data-target="#collapseExample{{ security.0 }}" aria-expanded="false"
+                                                 aria-controls="collapseExample{{ security.0 }}"><i
+                                                    class="task-expander-btn mdi mdi-plus-box-outline"></i></div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- 网络安全方向面试列表结束 -->
+
+                        <!-- misc专场 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="taskpanel-title">杂项</div>
+                            <button class="btn btn-primary-light newtaskbtn btn-block mb-3"><span>本栏目收录一些专项练习</span>
+                            </button>
+                            <div class="taskpanel" id="inProcessTask">
+                                <div class="taskcard">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="taskname">数据库合集</div>
+                                            <a href="#">参加面试</a>
+                                            <div class="collapse" id="collapseExample222">
+                                                <div class="task-details__title">发布时间</div>
+                                                <div class="taskenddate">2022-05-13</div>
+                                                <div class="task-details__title">来源</div>
+                                                <div class="user-avatar-group">
+                                                    <a href="javascript:;"
+                                                       class="user-avatar user-avatar-rounded  avatar-info"><span>小米</span>
+                                                    </a>
+                                                    <a href="javascript:;"
+                                                       class="user-avatar user-avatar-rounded  avatar-info"><span>腾讯</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer taskpanel-footer">
+                                            <div class="checklist-number">企业后端常见数据库问题</div>
+                                        </div>
+                                        <div class="taskcard-dragger"><i class="mdi mdi-drag-horizontal"></i></div>
+                                        <div class="taskcard-ribbon"><span class="badge badge-danger">困难</span></div>
+                                        <div class="task-expander" role="button" data-toggle="collapse"
+                                             data-target="#collapseExample222" aria-expanded="false"
+                                             aria-controls="collapseExample222"><i
+                                                class="task-expander-btn mdi mdi-plus-box-outline"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- misc专场结束 -->
+
+                        <!-- 后端专场 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="taskpanel-title">后端专场</div>
+                            <button class="btn btn-primary-light newtaskbtn btn-block mb-3"><span>企业后端工程师</span>
+                            </button>
+                            <div class="taskpanel" id="inReviewTask">
+                                <div class="taskcard">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="taskname">python后端工程师</div>
+                                            <a href="#">参加面试</a>
+                                            <div class="collapse" id="collapseExample333">
+                                                <div class="task-details__title">发布时间</div>
+                                                <div class="taskenddate">2022-05-13</div>
+                                                <div class="task-details__title">来源</div>
+                                                <div class="user-avatar-group">
+                                                    <a href="javascript:;"
+                                                       class="user-avatar user-avatar-rounded  avatar-info"><span>谷歌</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer taskpanel-footer">
+                                            <div class="checklist-number">Python后端工程师常见问题</div>
+                                        </div>
+                                        <div class="taskcard-dragger"><i class="mdi mdi-drag-horizontal"></i></div>
+                                        <div class="taskcard-ribbon"><span class="badge badge-success">简单</span></div>
+                                        <div class="task-expander" role="button" data-toggle="collapse"
+                                             data-target="#collapseExample333" aria-expanded="false"
+                                             aria-controls="collapseExample333"><i
+                                                class="task-expander-btn mdi mdi-plus-box-outline"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 后端专场结束 -->
+
+
+                        <!-- 前端专场 -->
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                            <div class="taskpanel-title">前端专场</div>
+                            <button class="btn btn-primary-light newtaskbtn btn-block mb-3"><span>企业前端工程师</span>
+                            </button>
+                            <div class="taskpanel" id="completedTasks">
+                                <div class="taskcard">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="taskname">vue前端工程师</div>
+                                            <a href="#">参加面试</a>
+                                            <div class="collapse" id="collapseExample444">
+                                                <div class="task-details__title">发布时间</div>
+                                                <div class="taskenddate">2022-05-13</div>
+                                                <div class="task-details__title">来源</div>
+                                                <div class="user-avatar-group">
+                                                    <a href="javascript:;"
+                                                       class="user-avatar user-avatar-rounded  avatar-info"><span>字节</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer taskpanel-footer">
+                                            <div class="checklist-number">vue前端工程师常见问题</div>
+                                        </div>
+                                        <div class="taskcard-dragger"><i class="mdi mdi-drag-horizontal"></i></div>
+                                        <div class="taskcard-ribbon"><span class="badge badge-success">简单</span></div>
+                                        <div class="task-expander" role="button" data-toggle="collapse"
+                                             data-target="#collapseExample444" aria-expanded="false"
+                                             aria-controls="collapseExample444"><i
+                                                class="task-expander-btn mdi mdi-plus-box-outline"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 前端专场结束 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS-Files -->
+<!--页面js-->
+<script src="{% static 'dist/js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'assetstwo/vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+<!-- 搜索框模糊搜索的支持 -->
+<script src="{% static 'dist/js/main.js' %}"></script>
+<script class="text/javascript">
+    Sortable.create(taskList, {
+        animation: 100,
+        group: 'list-1',
+        draggable: '.taskcard',
+        handle: '.taskcard-dragger',
+        sort: true,
+        chosenClass: 'active',
+    });
+    Sortable.create(inProcessTask, {
+        group: 'list-1',
+        handle: '.taskcard-dragger'
+    });
+    Sortable.create(inReviewTask, {
+        group: 'list-1',
+        handle: '.taskcard-dragger'
+    });
+    Sortable.create(completedTasks, {
+        group: 'list-1',
+        handle: '.taskcard-dragger'
+    });
+    $('.task-checklist').on('click', '.task-checkbox >label', function () {
+        $(this).toggleClass('done');
+    });
+    $(".task-expander-btn").click(function () {
+        $(this).toggleClass("mdi-minus-box-outline mdi-plus-box-outline");
+    });
+</script>
+</body>
+</html>

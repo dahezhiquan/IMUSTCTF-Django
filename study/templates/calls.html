@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW面试合集 - IMUSTCTF</title>
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+    <!--网站logo图片 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/app.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/theme/default-theme.css' %}">
+</head>
+<body class="default-theme">
+<div class="main-wrapper">
+    <div class="chatapp">
+        <nav id="navbar" class="navbar navbar-expand-md navbar-light fixed-top bg-white border-bottom shadow-sm"><a
+                class="navbar-brand" href="/"><img src="http://101.42.155.61/static/logo.png" width="50" height="50"
+                                                   class="d-inline-block align-top" alt="">
+            <h1>IMUSTCTF - interview</h1>
+        </a>
+            <div class="ml-auto d-flex align-items-center">
+                <div class="iconbox iconbox-search btn-hovered-light"><i class="iconbox__icon mdi mdi-magnify"></i>
+                </div>
+                <div class="navbar-nav">
+                    <div class="iconbox-group">
+                        <div class="iconbox btn-hovered-light"><i class="iconbox__icon mdi mdi-dots-vertical"></i></div>
+                    </div>
+                    <!--顶部搜索-->
+                    <div class="iconbox-searchbar">
+                        <form>
+                            <input type="text" class="form-control" placeholder="在这里搜索..." autofocus>
+                            <button class="search-submit" type="submit"><i class="mdi mdi-magnify"></i></button>
+                            <a href="javascript:void(0)" class="search-close"><i class="mdi mdi-arrow-left"></i></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="chatapp__content">
+            <div class="chatapp__callstab">
+                <div class="chatapp-user-list ">
+                    <div class="chatapp-user-list-body custom-scrollbar">
+                        {% for project in projectList %}
+                            <ul class="list-unstyled">
+                                <a href="/study/call?project={{ pro }}&id={{ project.0 }}"
+                                   style="text-decoration: none;">
+                                    <li class="" id="{{ project.0 }}">
+                                        <div class="calllist">
+                                            <div class="calllist__details">
+                                                <div class="calllist__details--name">{{ project.1 }}</div>
+                                                <div class="calllist__details--info"><i
+                                                        class="mdi mdi-call-made"></i><span>{{ project.2 }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="calllist__actions">
+                                                <div class="iconbox btn-hovered-light"><i
+                                                        class="iconbox__icon mdi mdi-phone-outline"></i></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        {% endfor %}
+                        <ul class="list-unstyled">
+                            <li>
+                                <div class="calllist">
+                                    <div class="calllist__details">
+                                        <div class="calllist__details--name">当您点击通话按钮后，平台需要1-2s的响应时间</div>
+                                        <div class="calllist__details--info"><i
+                                                class="mdi mdi-call-made"></i><span>2002-06-25</span>
+                                        </div>
+                                    </div>
+                                    <div class="calllist__actions">
+                                        <div class="iconbox btn-hovered-light"><i
+                                                class="iconbox__icon mdi mdi-phone-outline"></i></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!--点击左侧菜单变色-->
+                        <script>
+                            document.getElementById('{{ id }}').className = 'active';
+                        </script>
+
+                    </div>
+                </div>
+                <div class="ca-content__callswrapper custom-scrollbar">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                        <div class="ca-call-details-card">
+                                            <div class="back-button-md "><i class="mdi mdi-arrow-left"></i></div>
+                                            <div class="ca-call-details__left">
+                                                <div class="user-avatar  user-avatar-xl user-avatar-rounded online"><img
+                                                        src="{{ interviewerList.0.1 }}"
+                                                        alt=""></div>
+                                                <div class="ca-call-details__pname">
+                                                    <div>{{ interviewerList.0.0 }}</div>
+                                                    <div class="calllist__details--info">
+                                                        <span>
+                                                            <i class="mdi mdi-tag-outline"></i>
+                                                        </span>
+                                                        <span>本场面试官</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ca-call-details__right"
+                                                 onclick="bf('{{ interviewerList.0.2 }}','{{ interviewerList.0.3 }}');"
+                                                 id="bf">
+                                                <!--音频播放-->
+                                                <audio src=""
+                                                       controls="controls" preload id="music1"
+                                                       hidden></audio>
+                                                <script>
+                                                    function bf(introduce, lan) {
+                                                        $.ajax({
+                                                            url: "/study/callapi/",
+                                                            data: {
+                                                                'introduce': introduce,
+                                                                'lan': lan
+                                                            },
+                                                            success: function (return_data) {
+                                                                // 配置语音地址
+                                                                document.getElementById('music1').src = return_data;
+                                                                var audio = document.getElementById('music1');
+                                                                if (audio !== null) {
+                                                                    audio.play(); // 播放
+                                                                }
+                                                            }
+                                                        })
+                                                    }
+                                                </script>
+                                                <div class="iconbox btn-solid-success"><i
+                                                        class="iconbox__icon mdi mdi-phone"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-5">
+                            <div class="col-12">
+                                <div class="ca-call-details-history">
+                                    {% for question in questionList %}
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="ca-call-history">
+                                                    <div class="ca-call-history__left">
+                                                        <div class="call-outline-btn call-incoming-icon"><i
+                                                                class="mdi mdi-phone-incoming"></i></div>
+                                                        <div class="ca-call-history__left--title">
+                                                            <div>{{ question.1 }}</div>
+                                                            <span>推荐用时：{{ question.2 }}分钟</span></div>
+                                                    </div>
+                                                    <div class="ca-call-history__right">
+                                                        <div class="iconbox btn-solid-info" onclick="show('{{ question.3 }}','{{ interviewerList.0.3 }}');" id="show">
+                                                            <i class="iconbox__icon mdi mdi-phone"></i>
+                                                            <!--音频播放-->
+                                                            <audio src=""
+                                                                   controls="controls" preload id="music{{ question.0|add:10086 }}"
+                                                                   hidden></audio>
+                                                            <script>
+                                                                function show(introduce, lan) {
+                                                                    $.ajax({
+                                                                        url: "/study/callapi/",
+                                                                        data: {
+                                                                            'introduce': introduce,
+                                                                            'lan': lan
+                                                                        },
+                                                                        success: function (return_data) {
+                                                                            // 配置语音地址
+                                                                            document.getElementById('music{{ question.0|add:10086 }}').src = return_data;
+                                                                            var audio = document.getElementById('music{{ question.0|add:10086 }}');
+                                                                            if (audio !== null) {
+                                                                                audio.play(); // 播放
+                                                                            }
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </script>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Javascripts Files -->
+<script src="{% static 'assetstwo/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'dist/js/main.js' %}"></script>
+<script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+
+
+</body>
+</html>
