@@ -1,0 +1,92 @@
+{% extends "nav.html" %}
+
+{% load static %}
+
+{% block information %}
+    active
+{% endblock %}
+{% block information_user %}
+    active
+{% endblock %}
+{% block information_user_feedback %}
+    active
+{% endblock %}
+{% block title %}
+    反馈 - IMUSTCTF
+{% endblock %}
+{% block csslist %}
+    <!-- 反馈表单CSS -->
+    <link rel="stylesheet" href="{% static 'css/stylefeed.css' %}">
+{% endblock %}
+
+{% block main %}
+    <!--反馈表单-->
+    <div class="main-group">
+        <div class="box-group">
+            <div class="left-group">
+                <h3 class="title" style="color:white;">网站信息</h3>
+                <div class="icon-group">
+                    <ul>
+                        <li>
+                            <img src="{% static 'imgs/address.png' %}" class="icon" alt="">
+                            <p style="color:white;">
+                                包头市昆都仑区内蒙古科技大学
+                            </p>
+                        </li>
+                        <li>
+                            <img src="{% static 'imgs/email.png' %}" class="icon" alt="">
+                            <p style="color:white;">
+                                3390205563@qq.com
+                            </p>
+                        </li>
+                        <li>
+                            <img src="{% static 'imgs/mobile.png' %}" class="icon" alt="">
+                            <p style="color:white;">
+                                15326722754
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right-group">
+                <h3 class="title">在线留言</h3>
+                <h3 class="title" style="color: #00dffc;">{{ message }}</h3>
+                <form action="/getback/" class="form" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group w50">
+                            <input type="text" name="name">
+                            <span>姓名</span>
+                        </div>
+                        <div class="input-group w50">
+                            <input type="text" name="age">
+                            <span>年龄</span>
+                        </div>
+                        <div class="input-group w50">
+                            <input type="text" name="email">
+                            <span>邮箱</span>
+                        </div>
+                        <div class="input-group w50">
+                            <input type="text" name="phone">
+                            <span>手机号</span>
+                        </div>
+                        <div class="input-group w100">
+                            <textarea name="data"></textarea>
+                            <span>请输入您的反馈内容</span>
+                        </div>
+                        <div class="input-group w100">
+                            <button type="submit">提 交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--反馈表单结束-->
+
+{% endblock %}
+{% block footer_change %}
+    <p>我多么希望，有一个门口，早晨，阳光照在草上。</p>
+    <p>我们站着，扶着自己的门窗，门很低，但太阳是明亮的。</p>
+    <p>草在结它的种子，风在摇它的叶子，我们站着，不说话，就十分美好。</p>
+{% endblock %}
