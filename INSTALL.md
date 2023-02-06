@@ -30,9 +30,7 @@ GRANT all privileges ON login.* TO 'login'@'localhost';
 
 **2.导入sql文件：**
 
-导入目录下的login.sql文件到login数据库
-
-或者手动导入model层的表数据
+通过Django自动导入model层的表数据
 
 **3.mange.py文件夹cmd启动项目**
 
