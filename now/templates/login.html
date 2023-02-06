@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+    <!--网站logo图片 -->
+    <meta charset="utf-8">
+    <title>登录注册 - IMUSTCTF</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div id="formContainer" class="dwo">
+    <div class="formLeft">
+        <img src="{% static 'login_images/imust.png' %}">
+    </div>
+    <div class="formRight">
+        <!-- 忘记密码表单 -->
+        <form id="forgot" class="otherForm">
+            <header>
+                <h1>忘记密码</h1>
+                <p>输入邮箱找回密码</p>
+            </header>
+            <section>
+                <label>
+                    <p>邮箱</p>
+                    <input type="email" placeholder=" ">
+                    <div class="border"></div>
+                </label>
+                <button type="submit">发送邮件</button>
+            </section>
+            <footer>
+                <button type="button" class="forgotBtn">返回</button>
+            </footer>
+        </form>
+        <!-- 忘记密码表单结束 -->
+
+        <!-- 登录表单 -->
+        <form id="login" action="/now/login/" method="post">
+            {% csrf_token %}
+            <header>
+                <h1>欢迎回来</h1>
+                <p>请先登录</p>
+            </header>
+            <section>
+                <label>
+                    <p>用户名</p>
+                    <input type="text" name="username" placeholder=" ">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>密码</p>
+                    <input type="password" name="password" placeholder=" ">
+                    <div class="border"></div>
+                </label>
+
+                <button type="submit">登 录</button>
+
+
+            </section>
+            {% if message == "登录成功！" %}
+                <script>
+                    alert("{{message}}");
+                    window.location.href = "/"
+                </script>
+            {% endif %}
+
+            <footer>
+                <button type="button" class="forgotBtn">忘记密码？</button>
+                <button type="button" class="registerBtn">新用户？</button>
+            </footer>
+        </form>
+        <!-- 登录表单结束 -->
+
+        <!-- 注册表单 -->
+        <form id="register" class="otherForm" action="/now/registerinput/" method="post">
+            {% csrf_token %}
+            <header>
+                <h1>用户注册</h1>
+                <p>注册后享受更多服务</p>
+            </header>
+            <section>
+                <label>
+                    <p>用户名</p>
+                    <input type="text" placeholder=" " name="username">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>邮箱</p>
+                    <input type="email" placeholder=" " name="email">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>密码</p>
+                    <input type="password" placeholder=" " name="password">
+                    <div class="border"></div>
+                </label>
+                <label>
+                    <p>重复密码</p>
+                    <input type="password" placeholder=" " name="agpassword">
+                    <div class="border"></div>
+                </label>
+
+                <button type="submit">注 册</button>
+
+            </section>
+
+            {% if message != "" %}
+                <script>
+                    alert("{{message}}");
+                </script>
+            {% endif %}
+
+            <footer>
+                <button type="button" class="registerBtn">返回</button>
+            </footer>
+        </form>
+        <!-- 注册表单结束 -->
+    </div>
+</div>
+
+<!--JS-->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
