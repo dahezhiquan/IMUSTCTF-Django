@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>神奇的小熊 - IMUSTCTF</title>
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+    <!--网站logo图片 -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--小熊游戏界面的CSS-->
+    <link rel="stylesheet" href="{% static 'css/bearcolor.css' %}">
+
+</head>
+<body>
+
+<!--关卡选择按钮-->
+<div class="top-bar">
+    <button class="button level-select-button">Levels</button>
+</div>
+<!--关卡选择按钮结束-->
+
+<ol class="level-list"></ol>
+
+<canvas></canvas>
+<p class="instruction"></p>
+<button class="button next-level-button">Next level</button>
+
+<div class="levels">
+
+    <!--每个关卡-->
+    <pre id="intro-fixed1" data-blurb="提示">
+blurb: 提示
+instruction: 移动小熊到星星的位置
+---
+*=.=.
+    !
+. . .
+    !
+@=.=.
+</pre>
+
+    <pre id="intro-fixed2" data-blurb="提示">
+blurb: 提示
+instruction: 您可以旋转轮盘使小熊可以移动到星星的位置
+---
+* . .
+    !
+. . .
+    !
+@=.=.
+</pre>
+
+    <pre id="intro-fixed3" data-blurb="★">
+blurb: ★
+---
+@=. .
+
+. . .
+    !
+*=. .
+</pre>
+
+    <pre id="intro-free1" data-blurb="提示">
+blurb: 提示
+instruction: 蓝色链接随网格移动。旋转网格以不同方式连接蓝色和橙色链接。
+---
+@-. .
+!   | 
+. . .
+    |
+*-.-.
+</pre>
+
+    <pre id="m3x3-2-med" data-blurb="★">
+blurb: ★
+---
+. . *
+| | | 
+. . .
+| | | 
+@ .=.
+</pre>
+
+    <pre id="m3x3-fixed-switch" data-blurb="★">
+blurb: ★
+---
+*=.-.
+ 
+. . .
+    | 
+@-. .
+</pre>
+
+    <pre id="m4x4-2" data-blurb="★">
+blurb: ★
+---
+. .=. .
+  | !  
+. . .-*
+  |    
+. . . .
+       
+. @-. .
+</pre>
+
+    <pre id="m4x4-1" data-blurb="★">
+blurb: ★
+---
+. . . .
+       
+* . . @
+  | ! |
+. . . .
+  !    
+. . . .
+</pre>
+
+    <pre id="m4x4-3" data-blurb="★">
+blurb: ★
+---
+. @ . .
+! |    
+. . . .
+      |
+.=.=.-.
+|       
+. * . .
+</pre>
+
+    <pre id="m4x4-4" data-blurb="★">
+blurb: ★
+---
+. . . .
+       
+* . . .
+    !  
+. . .-.
+!      
+.=.=. @
+</pre>
+
+    <pre id="m4x4-5" data-blurb="★">
+blurb: ★
+---
+.-.-.-.
+|       
+@ .-.-.
+       
+* .=. .
+!   |   
+.-.-. .
+</pre>
+
+    <pre id="m4x4-6-med" data-blurb="★">
+blurb: ★
+---
+. * . .
+
+.-.=. .
+  |
+. . . .
+!   |
+.=. @ .
+</pre>
+
+    <pre id="m4x4-7-hard1" data-blurb="★★">
+blurb: ★★
+---
+. . *-.
+       
+.-.=. .
+      |
+.=. . .
+  | |  
+@-.-.=.
+</pre>
+
+    <pre id="m4x4-8-hard2" data-blurb="★★">
+blurb: ★★
+---
+.-@ .=.
+       
+. . . .
+    |  
+.-. .-*
+  |    
+. .=.-.
+</pre>
+
+    <pre id="m4x4-9-hard1" data-blurb="★★">
+blurb: ★★
+---
+. . .=.
+  !    
+@-. .-.
+     
+. .=. .
+       
+. . * .
+</pre>
+
+    <pre id="m4x4-10-hard1" data-blurb="★★">
+blurb: ★★
+---
+. @=. .
+  |   
+. .-.-.
+       
+.-.-.-.
+!     ! 
+. * . .
+</pre>
+
+    <pre id="m5x5-3" data-blurb="★">
+. . . . .
+  | !   
+. . .-. .
+  |     
+. . . . *
+  |     
+. . .=. .
+  |     
+. @ . . .
+</pre>
+
+    <pre id="m5x5-1" data-blurb="★">
+@-.-. .-.
+    |    
+. . . . .
+         
+. . .=. .
+         
+. . . .=.
+    |    
+. .=.-* .
+</pre>
+
+    <pre id="m5x5-2" data-blurb="★★">
+. . . . .
+        
+. .=.-. @
+|       !
+. . . .-.
+        
+.=. . .=.
+!       
+* . . . .
+</pre>
+
+    <pre id="m5x5-4" data-blurb="★★">
+. . . .-.
+      ! 
+. .-. . .
+  !     |
+.=. . . .
+|        
+. . . . *
+|        
+.-@=. .=.
+</pre>
+
+    <pre id="m5x5-5" data-blurb="★★">
+. . . . .
+
+. . .-. *
+    !
+. . .-. .
+
+.=. . . .
+    |
+. @-. . .
+</pre>
+
+    <pre id="m5x5-6" data-blurb="★★">
+. . .-.-.
+!   !    
+. .=.-. .
+|   
+. .-. .-@
+!
+* .=. . .
+      |
+.=. .-.=.
+</pre>
+
+    <pre id="m5x5-7" data-blurb="★★★">
+.=* . @=.
+|
+. .=. . .
+|   | |
+.=. . .-.
+        |
+. . . .=.
+!    
+. .-.-. .
+</pre>
+
+    <pre id="m5x5-8" data-blurb="★★★">
+. * . .-.
+  |     
+. . .=.-.
+!       | 
+. . . . .
+        
+. .-. .=.
+        |
+. . .=.-@
+</pre>
+
+    <pre id="m5x5-9" data-blurb="★★★">
+.-.-. . .
+    |    
+. . . .-@
+  !      
+* . .-. .
+|   !    
+.-. . .=.
+    |   !
+. . .=. .
+</pre>
+
+    <pre id="m5x5-10" data-blurb="★★">
+. . . . .
+         
+. . . .-@
+  !      
+* . .=. .
+|   !    
+.-. . . .
+         
+. . . . .
+</pre>
+
+    <pre id="m5x5-11" data-blurb="★★★">
+. . . .=.
+  |     
+. . . .=.
+|        
+. . .-. .
+! |     
+. .=. . .
+|   !   !
+.-@ . * .
+</pre>
+
+    <pre id="m5x5-12" data-blurb="★★">
+. . .=.=.
+        
+. . . . .
+        
+. . . . @
+        
+. . . . .
+        
+* . .=.=.
+</pre>
+
+    <pre id="m6x6-1-hard1" data-blurb="★★★">
+. . * . . .
+  ! | |  
+. .-. .-. .
+          |
+. . . . .-.
+      | ! |
+. . .=. . .
+    |
+@-.-. .-. .
+          |
+. .=. . .-.
+</pre>
+
+    <pre id="m6x6-2" data-blurb="★★★">
+@ .=. . .=.
+  | | !
+. . . .=. .
+  |     |
+. . . .-. .
+|   !
+. . . . . *
+|     |
+.=. .-. . .
+  |   | |
+.-. . . .=.
+</pre>
+
+    <pre id="m6x6-3" data-blurb="★★★">
+.=. .=.-.-*
+  |        
+.-. . . . .
+        | !
+. . .-.-. .
+!          
+.-. .=.=. .
+           
+@ .=. . . .
+  |     !
+. .-. .-. .
+</pre>
+
+    <pre id="pivot-4x4-intro" data-blurb="提示">
+instruction: 绿色链接以网格为轴心，但指向同一方向
+---
+. .-* .
+  |    
+. . . .
+       
+. .>. .
+       
+. @ . .
+</pre>
+
+    <pre id="pivot-5x5-2" data-blurb="★★">
+. . .-.-@
+        
+. .<. . .
+        
+.>. . . .
+| !      
+.-.-. . *
+  !     
+. . . . .
+</pre>
+
+    <pre id="pivot-5x5-swirly" data-blurb="★★★">
+. . . . .
+      ^ 
+.<. . . *
+        
+. . . . .
+        
+@ . . .>.
+  v     
+. . . . .
+</pre>
+
+    <pre id="pivot-5x5-1" data-blurb="★★★">
+. .-. . .
+      ^ 
+. .<.=.=.
+        
+.>. . .-@
+        
+* . . .=.
+        
+. . . . .
+</pre>
+
+    <pre id="pivot-5x5-3" data-blurb="★★">
+.=. . .-*
+    v   
+. . . . .
+         
+. . .-.J.
+         
+@-. . . .
+    v   
+.<. . . .
+</pre>
+
+    <pre id="pivot-5x5-4" data-blurb="★★★">
+.-.-. @>.
+!     ^ 
+. . . . .
+  |      
+. . . . .
+  |     
+. . . .=*
+    ^    
+. . .-. .>
+</pre>
+
+    <pre id="pivot-5x5-5" data-blurb="★★★">
+.-. . . *
+        
+. .>. . .
+|       v
+.-. . . .
+  ^      
+. . .-. .
+      v 
+@=.=. . .
+</pre>
+
+    <pre id="pivot-5x5-6" data-blurb="★★★">
+. . .>. .
+  ! |    
+@=. .-. .
+        
+. . . .=.>
+         
+. . . . .
+         
+. *>.<. .
+</pre>
+
+    <pre id="pivot-5x5-7" data-blurb="★★★">
+* . @ . .
+v   |   
+. . . . .
+      !  
+. . . . .
+^     ! !
+. .-. . .
+  !     
+. . . . .
+    v
+</pre>
+
+    <pre id="pivot-6x6-1" data-blurb="★★★">
+. . . . . .
+| v         
+@ . . . . *
+  | |      
+. . . . . .
+| !   ^ | K
+. . . .-.=.
+|          
+. .-. . . .
+v          
+.>. . . . .
+</pre>
+
+    <pre id="pivot-6x6-3" data-blurb="★★★">
+. @-. .>.-.
+          
+. . . . . .
+          |
+* .>. .=. .
+    !      
+. . . . . .>
+      |   ^
+. . . .=. .
+           
+. .=. . .=.>
+</pre>
+
+    <pre id="pivot-6x6-2" data-blurb="★★★">
+. .-.-. .=.
+      v   
+. . . . . .
+  |     ! v
+.>. . . . *
+    ^      
+. . . . . .
+|          
+. .-.<. . .
+! |       |
+. . . .>.-@
+</pre>
+
+    <pre id="m44" data-blurb="★★">
+. .=. *-.
+        
+. . .=. .
+!        
+. . . . .
+  |   ! 
+. . . . .
+  |     |
+. @ . .=.
+</pre>
+
+    <pre id="m45" data-blurb="★★">
+@ * .>. .
+        
+. .=.=. .
+|     | 
+.>. . . .
+        
+. . . .>.
+|       
+.=. . .-.
+</pre>
+
+    <pre id="m46" data-blurb="★★★">
+.-. . .
+    ^ 
+. . . .
+       
+.L. . .
+      !
+@ . .-*
+</pre>
+
+    <pre id="m47" data-blurb="★★">
+@ . . . . .
+v v v v v v
+. . . . . .
+ 
+. . . . . .
+           
+. . . . . .
+  v v v v v
+. . . . . .
+           
+. . . .=. *
+v v v v   v
+</pre>
+
+    <pre id="m48" data-blurb="★">
+.-.<.>.=. .
+W !       |
+. . .A. . *
+    |   |  
+. .=. . . .
+^ !        
+. .D.-.=.=@
+          | 
+. . .-.-. .
+|          
+.#.=. .<. .
+    v     v
+</pre>
+
+    <pre id="m49" data-blurb="★★★">
+. . .-@ .
+    |   
+. . . .J.
+        
+* . . . .
+| !     !
+. . . . .
+    v   !
+. . . .-.
+</pre>
+
+    <pre id="m50" data-blurb="★★★">
+*=. . .
+    v  
+. . . .
+^     |
+. . . .
+  ^   |
+@ .>. .
+</pre>
+
+    <pre id="rotate-tut" data-blurb="提示">
+instruction: 红色链接已固定到位，但会随栅格旋转
+---
+. . . .
+       
+@ .4. .
+  |    
+. . .-*
+       
+. . . .
+</pre>
+
+    <pre id="rotate1" data-blurb="★">
+. . .-*
+    |  
+. . . .
+    5  
+.4. . .
+|      
+@ . . .
+</pre>
+
+    <pre id="rotate2" data-blurb="★★">
+@ .-.=.
+    |  
+. . .4.
+    |  
+* . . .
+|   |  
+. . . . 
+</pre>
+
+    <pre id="rotate3" data-blurb="★★">
+. . * .
+! 5 v  
+. . . @
+  |    
+. .4. .
+  !    
+. . . .
+</pre>
+
+    <pre id="rotate3b" data-blurb="★★">
+* . . .
+! 5    
+. . . @
+  |    
+. .4. .
+  !    
+. . . .
+</pre>
+
+    <pre id="rotate-5x5-1" data-blurb="★★">
+. . . .-@
+      8 
+. .=. . .
+        
+*=. . . .
+        
+. .-. . .
+        
+. . . . .
+</pre>
+
+    <pre id="rotate-5x5-2" data-blurb="★★">
+. . . . .
+        
+. . . .6*
+  |     
+. . . .=.
+  |     
+.4. . . .
+        |
+. . . .-@
+</pre>
+
+    <pre id="rotate-5x5-2b" data-blurb="★★★">
+. . . . .
+  !   | 
+.-.-. . .
+  v   |
+. . .-. .
+        
+@ . . . .
+    5   
+. . .=* .
+</pre>
+
+    <pre id="rotate-6x6-1" data-blurb="★★★">
+@4.=. . . .
+          
+. . . . . .
+      v 8 |
+.-.-. . . .
+!   !   ^   
+. . . . . .
+           
+. .>. . . .
+!          
+* . .4. . .
+</pre>
+
+    <pre id="rotate-6x6-2" data-blurb="★★★">
+. . *<. . .
+          
+.=. .-. . .
+        5
+. . . .-. .
+        |   
+. . . . . .
+           
+. . . . . .
+    5     | 
+. .=. . @-.
+</pre>
+
+    <pre id="rotate-6x6-3" data-blurb="★★★">
+.4. . . . @
+!          
+.-. . .=. .
+! 
+. . . . . .
+!           
+.>.6. . . .
+!          
+. . . .=.-.
+      ^    
+. . . . * .
+</pre>
+    <!--每个关卡结束-->
+
+</div>
+
+<!-- 游戏逻辑代码 -->
+<script src="{% static 'js/bearmove.js' %}"></script>
+
+</body>
+</html>
