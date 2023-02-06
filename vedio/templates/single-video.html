@@ -1,0 +1,251 @@
+{% extends "nav.html" %}
+
+{% load static %}
+{% block video %}
+    active
+{% endblock %}
+{% block video_mp4 %}
+    active
+{% endblock %}
+{% block title %}
+    VIDEO - IMUSTCTF
+{% endblock %}
+
+{% block cssList_end %}
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.min.css' %}">
+    <!-- icons -->
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+
+    <!-- muiplayer -->
+    <link rel="stylesheet" href="{% static 'mui-player/dist/mui-player.min.css' %}">
+    <script src="{% static 'mui-player/dist/mui-player.min.js' %}"></script>
+    <script src="{% static 'mui-player-desktop-plugin/dist/mui-player-desktop-plugin.min.js' %}"></script>
+    <script type="text/javascript">
+        var bilibiliSrc = '{{ vedioresult.0.8 }}' ;
+        // 去除转义 & --> &amp;
+        var rep_bilibiliSrc = bilibiliSrc.replace(/&amp;/g, "&");
+        var playerConfig = {
+            container: '#mui-player',
+            title: '{{ vedioresult.0.0 }}',
+            src: rep_bilibiliSrc,
+            poster: '{{ vedioresult.0.11 }}',
+            videoAttribute: [
+                {attrKey: 'webkit-playsinline', attrValue: ''},
+                {attrKey: 'playsinline', attrValue: ''},
+                {attrKey: 'x5-playsinline', attrValue: ''},
+                {attrKey: 't7-video-player-type', attrValue: 'inline'},
+                {attrKey: 'x5-video-player-type', attrValue: 'h5-page'},
+                {attrKey: 'x-webkit-airplay', attrValue: 'allow'},
+                {attrKey: 'controlslist', attrValue: 'nodownload'},
+            ],
+        };
+    </script>
+
+{% endblock %}
+
+{% block main %}
+    <div id="wrapper" class="sidebar-out">
+        <div class="main_content content-expand">
+            <div class="main_content_inner">
+                <div uk-grid>
+
+                    <!--视频播放-->
+                    <div class="uk-width-2-3@m">
+                        <div id="video-box" uk-sticky="top: 400 ;media : @s"
+                             cls-active="video-resized uk-animation-slide-right;">
+                        <span class="icon-feather-x btn-box-close"
+                              uk-toggle="target: #video-box ; cls: video-resized-hedden uk-animation-slide-left">
+                        </span>
+                            <!--播放视频-->
+                            <div id="mui-player" style="margin: auto;"></div>
+                        </div>
+
+                        <div class="video-info mt-3">
+                            <div class="video-info-title">
+                                <h1> {{ vedioresult.0.0 }}
+                                    {% if vedioresult.0.7 != "wuwuwu" %}
+                                        <a href="{{ vedioresult.0.7 }}" target="_blank">下载课程配套</a>
+                                    {% endif %}
+                                </h1>
+                            </div>
+
+                            <!--视频下方功能-->
+                            <div class="uk-flex uk-flex-between">
+                                <div class="video-info-details">
+                                    <span>{{ vediocnt }} 观看 </span>
+                                </div>
+                                <div class="video-likes">
+                                    <div class="like-btn" uk-tooltip="我喜欢">
+                                        <i class="uil-thumbs-up"></i>
+                                        <span class="likes">{{ vedioresult.0.5 }}</span>
+                                    </div>
+                                    <div class="video-info-element">
+                                        <div class="views-bar"></div>
+                                        <div class="views-bar blue" style="width: 50%"></div>
+                                    </div>
+                                    <div class="like-btn" uk-tooltip="我不喜欢">
+                                        <i class="uil-thumbs-down"></i>
+                                        <span class="likes">{{ vedioresult.0.6 }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--视频下方功能结束-->
+
+                            <!--老师模块-->
+                            <div class="uk-flex uk-flex-between uk-flex-middle" uk-grid>
+                                <div class="user-details-card uk-width-expand">
+                                    <a class="uk-flex">
+
+                                        <div class="user-details-card-avatar">
+                                            <img src="{{ vedioresult.0.9 }}" alt="">
+                                        </div>
+
+                                        <div class="user-details-card-name">
+                                            {{ vedioresult.0.1 }} <span> {{ vedioresult.0.2 }} </span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="uk-width-auto uk-flex">
+                                    <div class="btn-subscribe">
+                                        <a href="#" class="button primary"> <i class="icon-feather-plus"></i>
+                                            收藏 </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--老师模块结束-->
+
+                            <hr class="mt-0 mb-2">
+
+                            <h3> 简介</h3>
+                            <p>{{ vedioresult.0.4 }}</p>
+                        </div>
+                        <hr>
+
+                        <!--评论展示-->
+                        <div class="comments mt-4">
+                            <h3> 评论 <span class="comments-amount">0</span></h3>
+                            <ul>
+                                <li><!--头像-->
+                                    <div class="avatar"><img src="#" alt="">
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="comment-by">dahezhiquan <span>Web老师傅</span>
+                                            <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>
+                                                回复</a>
+                                        </div>
+                                        <p> 视频真的不错啊！！！ </p>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <div class="avatar"><img src="#" alt="">
+                                            </div>
+                                            <div class="comment-content">
+                                                <div class="comment-by">Tang<span>RE老师傅</span>
+                                                    <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>
+                                                        回复</a>
+                                                </div>
+                                                <p> 俺也这么觉得</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--评论展示结束-->
+
+                        <!--评论表单-->
+                        <div class="comments">
+                            <h4>评论 </h4>
+                            <ul>
+                                <li>
+                                    <div class="avatar"><img src="#" alt="">
+                                    </div>
+                                    <div class="comment-content">
+                                        <form class="uk-grid-small" uk-grid>
+                                            <div class="uk-width-1-1@s">
+                                                <label class="uk-form-label">评论</label>
+                                                <textarea class="uk-textarea" placeholder="在这里输入您的评论..."
+                                                          style=" height:160px"></textarea>
+                                            </div>
+                                            <div class="uk-grid-margin">
+                                                <input type="submit" value="提交" class="button primary">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--评论表单结束-->
+                    </div>
+                    <!--视频播放结束-->
+
+                    <!--视频列表-->
+                    <div class="uk-width-expand@m">
+
+                        <!--标题显示-->
+                        <div class="uk-flex uk-flex-middle uk-flex-between px-1 pb-3">
+                            <p class="mb-0 uk-h5"> 视频列表 </p>
+                            <label class="btn-switch">
+                                <input type="checkbox">
+                                <span class="btn-switch-slider" uk-toggle="target: #wrapper; cls: menu-small"></span>
+                            </label>
+                        </div>
+                        <!--标题显示结束-->
+
+                        {% for list in vedioList %}
+                            <div class="video-list-small uk-child-width-1-1@m uk-child-width-1-2@s" uk-grid>
+                                <div>
+                                    <a href="?vedioid={{ list.5 }}" class="video-post video-post-list">
+                                        <div class="video-post-thumbnail">
+                                            <span class="video-post-time">{{ list.4 }}</span>
+                                            <span class="play-btn-trigger"></span>
+
+                                            <img src="{{ list.3 }}" alt="">
+
+                                        </div>
+                                        <div class="video-post-content">
+                                            <h3> {{ list.0 }}</h3>
+                                            <img src="#" alt="">
+                                            <span class="video-post-user">{{ list.1 }}</span>
+                                            <span class="video-post-date"> {{ list.2 }} </span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <!--视频列表结束-->
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block jslist %}
+    <!-- javaScripts -->
+    <script src="{% static 'assets/js/uikit.min.js' %}"></script>
+    <script>
+        var config = window.playerConfig;
+        config.plugins = [
+            typeof MuiPlayerDesktopPlugin == 'function' ? new MuiPlayerDesktopPlugin({
+                thumbnails:{ // 缩略图配置
+
+                },
+            }) : {},
+        ]
+
+        console.log(config);
+        var mp = new MuiPlayer(config);
+    </script>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

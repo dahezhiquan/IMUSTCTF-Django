@@ -1,0 +1,56 @@
+{
+  "_from": "mui-player-desktop-plugin",
+  "_id": "mui-player-desktop-plugin@1.3.5",
+  "_inBundle": false,
+  "_integrity": "sha512-DmsGYZ6ecpys35uwxShotjtRPSfdqfSa7CgOs4agxc2rjPaD417o4c59691sg3hvBwndbzFEOdOD04mQwE+L3A==",
+  "_location": "/mui-player-desktop-plugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "mui-player-desktop-plugin",
+    "name": "mui-player-desktop-plugin",
+    "escapedName": "mui-player-desktop-plugin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mui-player-desktop-plugin/-/mui-player-desktop-plugin-1.3.5.tgz",
+  "_shasum": "952aa965e5f3daeedf94989693b894ab1c80b4a3",
+  "_spec": "mui-player-desktop-plugin",
+  "_where": "G:\\",
+  "author": {
+    "name": "Leisbanon"
+  },
+  "bugs": {
+    "url": "https://github.com/muiplayer/hello-muiplayer/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Mui Player Desktop Plugin Javascript Library",
+  "homepage": "https://github.com/muiplayer/hello-muiplayer#readme",
+  "keywords": [
+    "muiplayer",
+    "mui-player",
+    "player",
+    "video",
+    "html5",
+    "hls",
+    "danmaku"
+  ],
+  "license": "GPL-3.0",
+  "main": "dist/mui-player-desktop-plugin.min.js",
+  "name": "mui-player-desktop-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muiplayer/hello-muiplayer.git"
+  },
+  "scripts": {
+    "test": "npm run test"
+  },
+  "version": "1.3.5"
+}

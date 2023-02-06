@@ -1,0 +1,114 @@
+{% extends "nav.html" %}
+
+{% load static %}
+{% block video %}
+active
+{% endblock %}
+{% block video_mp4 %}
+active
+{% endblock %}
+{% block title %}
+    VIDEO - IMUSTCTF
+{% endblock %}
+
+{% block cssList_end %}
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.min.css' %}">
+    <!-- icons -->
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+
+{% endblock %}
+
+
+{% block main %}
+
+<div id="wrapper">
+    <!--左侧导航栏-->
+    <div class="main_sidebar">
+        <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+        <div class="sidebar">
+            <div class="sidebar_innr" data-simplebar>
+                <div class="sections">
+                    <h3> 列表 </h3>
+                    <ul>
+                        <li><a href="/video/vedios"> <i class="uil-home-alt"></i> <span> 主页 </span> </a></li>
+                        <li><a href="/video/watchlater"> <i class="uil-clock"></i> <span> 最近观看 </span> </a></li>
+                        <li class="active"><a href="#"> <i class="uil-thumbs-up"></i> <span>  收藏夹 </span> </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--左侧导航栏结束-->
+
+    <!-- contents -->
+    <div class="main_content">
+        <div class="main_content_inner">
+            <div uk-grid>
+
+                <!--右侧信息展示-->
+                <div class="uk-width-1-4@m uk-flex-last@m">
+                    <div class="uk-card-default rounded" uk-sticky="top:10; offset: 90; bottom: true; media: @m;">
+                        <div class="text-center p-3">
+                            <img src="{% static 'assets/images/messageimg/one.gif' %}"
+                                 class="avatar-large circle m-auto my-3" alt="">
+                            <h4 class="mb-1"> {{username}} </h4>
+                            <p class="uk-text-small text-muted"> {{perdes}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--右侧信息展示结束-->
+                <div class="uk-width-3-4@m">
+                    <div class="section-header mb-5 border-bottom uk-flex-middle">
+                        <div class="section-header-left">
+                            <h3> 你收藏的视频</h3>
+                        </div>
+                        <div class="section-header-right">
+                            <div class="display-as">
+                                <a href="#" uk-tooltip="title: o(*￣▽￣*)ブ; pos: top-right">
+                                    <i class="icon-feather-grid"></i>
+                                </a>
+                                <a href="#" class="active"
+                                   uk-tooltip="title: /(ㄒoㄒ)/~~; pos: top-right">
+                                    <i class="icon-feather-list"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--视频展示-->
+                    <a href="/video/showtime/?vedioid=3" class="video-post video-post-list">
+                        <div class="video-post-thumbnail">
+                            <span class="play-btn-trigger"></span>
+                            <span class="video-post-time">109:30</span>
+                            <img src="{% static 'assets/images/video-thumbal/git.png' %}" alt="">
+                        </div>
+                        <div class="video-post-content">
+                            <h3>Git学习
+                            </h3>
+                            <span class="video-post-user">遇见狂神说</span>
+                            <span class="video-post-views">{{vediocnt3}} 观看</span>
+                            <span class="video-post-date"> 2022/04/02 </span>
+                            <p>深入浅出的讲解了GIT使用的全流程以及实战教学！QQ交流群 : 664386224【版权声明：本系列课程来自B站：遇见狂神说，仅供内部学习使用】</p>
+                        </div>
+                    </a>
+                    <!--视频展示结束-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block jslist %}
+<!-- javaScripts -->
+<script src="{% static 'assets/js/uikit.min.js' %}"></script>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

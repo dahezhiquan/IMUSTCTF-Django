@@ -1,0 +1,238 @@
+{% extends "nav.html" %}
+
+{% load static %}
+{% block video %}
+active
+{% endblock %}
+{% block video_mp4 %}
+active
+{% endblock %}
+{% block title %}
+    VIDEO - IMUSTCTF
+{% endblock %}
+
+{% block cssList_end %}
+    <!-- 页面CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.min.css' %}">
+    <!-- icons -->
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+
+{% endblock %}
+
+{% block main %}
+
+<!-- 左侧导航栏 -->
+<div id="wrapper">
+    <div class="main_sidebar">
+        <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+        <!-- 菜单 -->
+        <div class="sidebar">
+            <div class="sidebar_innr" data-simplebar>
+                <div class="sections">
+                    <h3> 列表 </h3>
+                    <ul>
+                        <li class="active"><a href="#"> <i class="uil-home-alt"></i> <span> 主页 </span> </a></li>
+                        <li><a href="/video/watchlater"> <i class="uil-clock"></i> <span> 最近观看 </span> </a></li>
+                        <li><a href="/video/like"> <i class="uil-thumbs-up"></i> <span>  收藏夹 </span> </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 左侧导航栏结束 -->
+
+
+<!--页面内容-->
+<div class="main_content">
+    <div class="main_content_inner">
+        <!--轮播图-->
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1"
+             uk-slideshow="animation: push ;min-height: 200; max-height: 350 ;autoplay: t rue">
+            <ul class="uk-slideshow-items rounded">
+                <li>
+                    <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+                        <img src="{% static 'assets/images/banner/A.png' %}" alt="" uk-cover>
+                    </div>
+                    <div class="uk-position-cover"
+                         uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000">
+                    </div>
+                    <div class="uk-position-bottom-left bg-gradient-4 uk-width-1-1 p-4">
+                        <div uk-slideshow-parallax="scale: 1,1,0.8">
+                            <h1 uk-slideshow-parallax="x: 200,0,0" class="uk-heading-small"> 享受学习
+                            </h1>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+                        <img src="{% static 'assets/images/banner/B.png' %}" alt="" uk-cover>
+                    </div>
+                    <div class="uk-position-cover"
+                         uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000">
+                    </div>
+                    <div class="uk-position-bottom uk-position-medium uk-transition-scale-down">
+                        <h1 uk-slideshow-parallax="x: 200,0,0" class="uk-heading-small">拥抱美好生活</h1>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+                        <img src="{% static 'assets/images/banner/C.png' %}" alt="" uk-cover>
+                    </div>
+                    <div class="uk-position-cover"
+                         uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000">
+                    </div>
+                    <div class="uk-position-bottom-left bg-gradient-4 uk-width-1-1 p-4">
+                        <div uk-slideshow-parallax="scale: 1,1,0.8">
+                            <h1 uk-slideshow-parallax="x: 200,0,0" class="uk-heading-small"> 革命尚未完成
+                            </h1>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+                        <img src="{% static 'assets/images/banner/D.png' %}" alt="" uk-cover>
+                    </div>
+                    <div class="uk-position-cover"
+                         uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000">
+                    </div>
+                    <div class="uk-position-bottom-left bg-gradient-4 uk-width-1-1 p-4">
+                        <div uk-slideshow-parallax="scale: 1,1,0.8">
+                            <h1 uk-slideshow-parallax="x: 200,0,0" class="uk-heading-small"> 同志仍需努力
+                            </h1>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <a class="uk-position-center-left-out uk-position-small uk-hidden-hover slidenav-prev" href="#"
+               uk-slideshow-item="previous">
+            </a>
+            <a class="uk-position-center-right-out uk-position-small uk-hidden-hover slidenav-next" href="#"
+               uk-slideshow-item="next">
+            </a>
+        </div>
+        <!--轮播图结束-->
+
+
+        <!-- 推荐课程 -->
+        <div class="video-grid-slider mt-4">
+            <div>
+                <div>
+                    <h3> 推荐课程 </h3>
+                    <p> 学习以下课程休闲一下吧 </p>
+                </div>
+            </div>
+            <ul class="uk-child-width-1-4@m uk-child-width-1-3@s uk-grid">
+                {% for videos in classList %}
+                    <li style="margin-top: 10px;">
+                        <a href="/video/showtime/?vedioid={{ videos.4 }}" class="video-post" style="width:100%;">
+                            <div class="video-post-thumbnail">
+                                <span class="video-post-count">{{ videos.2 }}</span> <!--观看人数-->
+                                <span class="video-post-time">{{ videos.1 }}</span> <!--视频时长-->
+                                <span class="play-btn-trigger"></span>
+                                <img src="{{ videos.5 }}" alt="">
+                            </div>
+                            <div class="video-post-content">
+                                <h3> {{ videos.0 }} </h3>
+                                <img src="{{ videos.6 }}" alt="">
+                                <span class="video-post-date"> {{ videos.3 }} </span>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <!-- 推荐课程结束 -->
+
+
+        <!--推荐视频标题-->
+        <div class="section-header mt-5">
+            <div class="section-header-left">
+                <h3> 推荐视频 </h3>
+                <p> 我们更懂你</p>
+            </div>
+            <div class="section-header-right">
+                <a href="#" class="see-all"> 查看全部</a>
+            </div>
+        </div>
+        <!--推荐视频标题结束-->
+
+        <!--推荐视频-->
+        <div class="section-small pt-0">
+            <div>
+                <ul class="uk-child-width-1-4@m uk-child-width-1-3@s uk-grid mb-3">
+                    {% for videos in playList %}
+                        <li style="margin-top: 10px;">
+                            <a href="/video/showtime/?vedioid={{ videos.4 }}" class="video-post" style="width:100%;">
+                                <div class="video-post-thumbnail">
+                                    <span class="video-post-count">{{ videos.2 }}</span> <!--观看人数-->
+                                    <span class="video-post-time">{{ videos.1 }}</span> <!--视频时长-->
+                                    <span class="play-btn-trigger"></span>
+                                    <img src="{{ videos.5 }}" alt="">
+                                </div>
+                                <div class="video-post-content">
+                                    <h3> {{ videos.0 }} </h3>
+                                    <img src="{{ videos.6 }}" alt="">
+                                    <span class="video-post-date"> {{ videos.3 }} </span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!--推荐视频结束-->
+
+
+        <!--推荐影视标题-->
+        <div class="section-header mt-5">
+            <div class="section-header-left">
+                <h3> 推荐影视 </h3>
+                <p> 放松一下吧</p>
+            </div>
+            <div class="section-header-right">
+                <a href="#" class="see-all"> 查看全部</a>
+            </div>
+        </div>
+        <!--推荐影视标题结束-->
+
+        <!--推荐影视-->
+        <div class="section-small pt-0">
+            <div>
+                <ul class="uk-child-width-1-4@m uk-child-width-1-3@s uk-grid mb-3">
+                    {% for videos in movieList %}
+                        <li style="margin-top: 10px;">
+                            <a href="/video/showtime/?vedioid={{ videos.4 }}" class="video-post" style="width:100%;">
+                                <div class="video-post-thumbnail">
+                                    <span class="video-post-count">{{ videos.2 }}</span> <!--观看人数-->
+                                    <span class="video-post-time">{{ videos.1 }}</span> <!--视频时长-->
+                                    <span class="play-btn-trigger"></span>
+                                    <img src="{{ videos.5 }}" alt="">
+                                </div>
+                                <div class="video-post-content">
+                                    <h3> {{ videos.0 }} </h3>
+                                    <img src="{{ videos.6 }}" alt="">
+                                    <span class="video-post-date"> {{ videos.3 }} </span>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!--推荐影视结束-->
+    </div>
+</div>
+<!--页面内容结束-->
+
+{% endblock %}
+
+{% block jslist %}
+<!-- 页面逻辑JS -->
+<script src="{% static 'assets/js/uikit.min.js' %}"></script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

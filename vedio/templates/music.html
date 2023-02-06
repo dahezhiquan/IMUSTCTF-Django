@@ -1,0 +1,94 @@
+{% extends "nav.html" %}
+
+{% load static %}
+{% block video %}
+active
+{% endblock %}
+{% block video_mp3 %}
+active
+{% endblock %}
+{% block title %}
+    Music - IMUSTCTF
+{% endblock %}
+{% block csslist %}
+    <link rel="stylesheet" href="{% static 'css/common.css' %}"/>
+{% endblock %}
+
+{% block body_style %}
+    background="{{ musicImg }}"
+{% endblock %}
+
+
+{% block main %}
+<div id="app">
+    <div class="container" style="padding-top: 50px;">
+        <div class="music-box">
+            <img src="{{ musicImg }}"/>
+            <div class="mask">
+                <div class="mplayer" onclick="play()">
+                    <i class="fa">
+                        <span class="before"></span>
+                        <span class="after"> </span>
+                    </i>
+                    <svg
+                            class="loadingSvg"
+                            width="50"
+                            height="50"
+                            viewBox="0,0,50,50"
+                            style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
+                    >
+                        <circle></circle>
+                    </svg>
+                </div>
+                <div class="m-circle m-progress">
+                    <svg width="326" height="326" viewBox="0,0,326,326">
+                        <circle
+                                cx="163"
+                                cy="163"
+                                r="159"
+                                stroke-width="4"
+                                stroke="rgba(255, 206, 113, 0.2)"
+                                fill="rgba(0,0,0,.2)"
+                        ></circle>
+                        <circle
+                                class="a"
+                                cx="163"
+                                cy="163"
+                                r="159"
+                                stroke-width="3"
+                                stroke="rgba(255, 206, 113, 1)"
+                                fill="none"
+                                stroke-dasharray="0 999"
+                                transform="matrix(0,-1,1,0,0,326)"
+                        ></circle>
+                    </svg>
+                </div>
+                <div class="m_time">
+                    <span class="mplayer_curtime">00:00</span>
+                    <span class="m-join">/</span>
+                    <span class="mplayer_durtime">00:00</span>
+                    <span style="color: #ad986d; font-size: 16px;">{{ musicName }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="myAudio" src="{{ musicUrl }}"></audio>
+<br><br><br><br>
+
+{% endblock %}
+
+
+{% block jslist %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/common.js' %}"></script>
+
+{% endblock %}
+
+
+
