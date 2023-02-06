@@ -1,0 +1,276 @@
+<!doctype html>
+{% load static %}
+<!--导航栏继承模板-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+    <!-- 网站logo图片 -->
+
+    {% block csslist %}{% endblock %}
+    <!--顶部导航栏CSS-->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/boxicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/indexstyle.css' %}">
+    <!--手机端优化css-->
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+
+    {% block cssList_end %}{% endblock %}
+
+
+</head>
+<body {% block body_style %}{% endblock %}>
+
+<!--顶部导航栏-->
+<div class="navbar-area">
+    <div class="mobile-nav"><a href="/" class="logo"><img src="{% static 'assets/images/logos/logo-1.png' %}"
+                                                          alt="Logo"></a></div>
+    <div class="main-nav">
+        <div class="container" style="z-index:100000">
+            <nav class="navbar navbar-expand-md navbar-light ">{% block display_logo %}
+                <a class="navbar-brand" href="/"><img
+                        src="{% static 'assets/images/logos/logo-1.png' %}" alt="Logo"></a>{% endblock %}
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item"><a href="/" class="nav-link {% block index %}{% endblock %}">首页 </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link {% block video %}{% endblock %}">音视频 <i
+                                class='bx bx-caret-down'></i></a>
+                            <ul class="dropdown-menu" style="z-index:100000">
+                                <li class="nav-item"><a href="/video/vedios/"
+                                                        class="nav-link {% block video_mp4 %}{% endblock %}">视频 </a>
+                                </li>
+                                <li class="nav-item"><a href="/video/music/"
+                                                        class="nav-link {% block video_mp3 %}{% endblock %}">音乐盒子 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link {% block practice %}{% endblock %}">练习 <i
+                                class='bx bx-caret-down'></i></a>
+                            <ul class="dropdown-menu" style="z-index:100000">
+                                <li class="nav-item"><a href="#"
+                                                        class="nav-link {% block practice_web %}{% endblock %}">Web </a>
+                                </li>
+                                <li class="nav-item"><a href="/misc/" class="nav-link
+                                        {% block practice_misc %}{% endblock %}">Misc </a></li>
+                                <li class="nav-item"><a href="#"
+                                                        class="nav-link {% block practice_crypto %}{% endblock %}">Crypto </a>
+                                </li>
+                                <li class="nav-item"><a href="#" class="nav-link {% block practice_re %}{% endblock %}">RE </a>
+                                </li>
+                                <li class="nav-item"><a href="#"
+                                                        class="nav-link {% block practice_pwn %}{% endblock %}">PWN </a>
+                                </li>
+                                <li class="nav-item"><a href="http://101.42.155.61:7777/"
+                                                        class="nav-link {% block practice_sqlilabs %}{% endblock %}" target="_blank">sqlilabs </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link {% block content %}{% endblock %}">竞赛 </a></li>
+                        <li class="nav-item"><a href="#" class="nav-link {% block study %}{% endblock %}">学习 <i
+                                class='bx bx-caret-down'></i></a>
+                            <ul class="dropdown-menu" style="z-index:100000">
+                                <li class="nav-item"><a href="/study/interview/" class="nav-link
+                                        {% block study_interview %}{% endblock %}">模拟面试 </a></li>
+                                <li class="nav-item"><a href="#" class="nav-link {% block study_blog %}{% endblock %}">官方博客 </a>
+                                </li>
+                                <li class="nav-item"><a href="/study/git/"
+                                                        class="nav-link {% block study_git %}{% endblock %}">Git游戏 </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a href="#" class="nav-link {% block tools %}{% endblock %}">IMUSTTOOLS <i
+                                class='bx bx-caret-down'></i></a>
+                            <ul class="dropdown-menu" style="z-index:100000">
+                                <li class="nav-item"><a href="/load/ctftools/?type=misc"
+                                                        class="nav-link {% block tools_arms %}{% endblock %}">军火库 </a>
+                                </li>
+                                <li class="nav-item"><a href="/load/imusttools/"
+                                                        class="nav-link {% block tools_imusttools %}{% endblock %}">自研工具库 </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a href="#" class="nav-link {% block information %}{% endblock %}">信息 <i
+                                class='bx bx-caret-down'></i></a>
+                            <ul class="dropdown-menu" style="z-index:100000">
+                                <li class="nav-item"><a href="/ranking/" class="nav-link
+                                        {% block information_rank %}{% endblock %}">积分榜 </a></li>
+                                <!--  三级选项卡 -->
+                                <li class="nav-item"><a href="#"
+                                                        class="nav-link {% block information_user %}{% endblock %}">用户体验中心
+                                    <i class='bx bx-caret-down'></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a href="https://support.qq.com/products/371321"
+                                                                class="nav-link
+
+
+
+                                                                        {% block information_user_community %}{% endblock %}"
+                                                                target="_blank">社区 </a>
+                                        </li>
+                                        <li class="nav-item"><a href="/faq/"
+                                                                class="nav-link
+                                                                        {% block information_user_help %}{% endblock %}"
+                                        >帮助 </a>
+                                        </li>
+                                        <li class="nav-item"><a href="/feedback/"
+                                                                class="nav-link
+
+
+
+                                                                        {% block information_user_feedback %}{% endblock %}"
+                                        >反馈 </a>
+                                        </li>
+                                        <li class="nav-item"><a href="/respon/version/"
+                                                                class="nav-link
+
+
+                                                                        {% block information_user_version %}{% endblock %}"
+                                        >IMUST版本日志 </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="/now/setdata/"
+                                                        class="nav-link {% block information_setdata %}{% endblock %}"
+                                                        target="_blank">编辑个人信息 </a>
+                                </li>
+                                <li class="nav-item"><a href="/respon/imust/"
+                                                        class="nav-link {% block information_events %}{% endblock %}">IMUST大事件日历 </a>
+                                </li>
+                                <li class="nav-item"><a href="/now/logout/" class="nav-link">退出登录 </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="nav-side d-display">
+                        <div class="nav-side-item">
+                            <div class="search-box"><i class='bx bx-search'></i></div>
+                        </div>
+                        <!--未登录状态-->
+                        {% if userflag == 0 %}
+                            <div class="nav-side-item">
+                                <div class="get-btn"><a href="/now/login/"
+                                                        class="default-btn btn-bg-two border-radius-50">登录 <i
+                                        class='bx bx-chevron-right'></i></a></div>
+                            </div>
+                        {% endif %}
+
+                        <!--已登录状态-->
+                        {% if userflag == 1 %}
+                            <div class="nav-side-item">
+                                <div class="get-btn"><a href="/now/person/"
+                                                        class="default-btn btn-bg-two border-radius-50" target="_blank">我的主页
+                                    <i class='bx bx-chevron-right'></i></a></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--手机端个人主页点击展示-->
+    <div class="side-nav-responsive">
+        <div class="container-max">
+            <div class="dot-menu">
+                <div class="circle-inner">
+                    <div class="in-circle circle-one"></div>
+                    <div class="in-circle circle-two"></div>
+                    <div class="in-circle circle-three"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="side-nav-inner">
+                    <div class="side-nav justify-content-center align-items-center">
+                        <div class="side-nav-item nav-side">
+                            <div class="search-box"><i class='bx bx-search'></i></div>
+                            <!--未登录状态-->
+                            {% if userflag == 0 %}
+                                <div class="nav-side-item">
+                                    <div class="get-btn"><a href="/now/login/"
+                                                            class="default-btn btn-bg-two border-radius-50">登录 <i
+                                            class='bx bx-chevron-right'></i></a></div>
+                                </div>
+                            {% endif %}
+
+                            <!--已登录状态-->
+                            {% if userflag == 1 %}
+                                <div class="nav-side-item">
+                                    <div class="get-btn"><a href="/now/person/"
+                                                            class="default-btn btn-bg-two border-radius-50">我的主页
+                                        <i class='bx bx-chevron-right'></i></a></div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--顶部导航栏结束-->
+
+
+<!--搜索功能-->
+<div class="search-overlay">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="search-layer"></div>
+            <div class="search-close"><span class="search-close-line"></span><span class="search-close-line"></span>
+            </div>
+            <div class="search-form">
+                <form>
+                    <input type="text" class="input-search" placeholder="在这里搜索...">
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--搜索功能结束-->
+
+<div>
+    {% block main %}
+
+    {% endblock %}
+</div>
+
+<!--网站底部备案信息-->
+{% block footer %}
+    <footer class="footer-area footer-bg">
+        <div class="container">
+            <div class="copy-right-area">
+                <div class="copy-right-text">
+                    {% block footer_change %}{% endblock %}
+                    <p>Copyright ©2021-2022 IMUSTCTF. All Rights Reserved by dahe<br><a
+                            href="https://beian.miit.gov.cn/"
+                            target="_blank">蒙ICP备
+                        2021005358号</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+<!--网站底部备案信息结束-->
+
+</body>
+
+{% block jsList_start %}{% endblock %}
+<!--顶部导航栏JS-->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<script src="{% static 'assets/js/meanmenu.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+{% block jslist %}{% endblock %}
+
+</html>

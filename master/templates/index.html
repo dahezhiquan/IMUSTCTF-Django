@@ -1,0 +1,345 @@
+{% extends "nav.html" %}
+<!--首页-->
+{% load static %}
+{% block title %}
+    IMUSTCTF
+{% endblock %}
+{% block index %}
+active
+{% endblock %}
+{% block main %}
+    <!--首页轮播图-->
+    <div class="banner-slider-area">
+        <div class="banner-slider owl-carousel owl-theme">
+            {% for dataLine in data %}
+                <div class="banner-item item-bg{{ forloop.counter }}">
+                    <div class="d-table">
+                        <div class="d-table-cell">
+                            <div class="container">
+                                <div class="banner-item-content"><span>IMUSTCTF头条</span>
+                                    <h1>{{ dataLine.title }} </h1>
+                                    <p>{{ dataLine.desc }} </p>
+                                    <div class="banner-btn">
+                                        <a href="{{ dataLine.url }}"
+                                           class="default-btn btn-bg-two border-radius-50" target="_blank">点击查看详情
+                                            <i class='bx bx-chevron-right'></i>
+                                        </a>
+                                        <!--黄色按钮，暂时不用捏-->
+                                        <!--
+                                        <a
+                                                href="#"
+                                                class="default-btn btn-bg-one border-radius-50 ml-20" target="_blank">公示公告 <i
+                                                class='bx bx-chevron-right'></i>
+                                        </a>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!--首页轮播图结束-->
+
+    <!--我们的网站-->
+    <div class="about-area ptb-100">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <div class="about-content mr-20">
+                        <div class="section-title"><span class="sp-color2">我们的网站</span>
+                            <h2>IMUSTCTF 学习练习平台</h2>
+                            <p>CTF（Capture The
+                                Flag）中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF起源于1996年DEFCON全球黑客大会，以代替之前黑客们通过互相发起真实攻击进行技术比拼的方式。已经成为全球范围网络安全圈流行的竞赛形式，2013年全球举办了超过五十场国际性CTF赛事。而DEFCON作为CTF赛制的发源地，DEFCON
+                                CTF也成为了全球最高技术水平和影响力的CTF竞赛，类似于CTF赛场中的“世界杯” 。</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-6">
+                                <div class="about-content-card"><i class="flaticon-practice"></i>
+                                    <h3>做题·竞赛</h3>
+                                    <p>练习CTF题目，参加CTF竞赛</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-6">
+                                <div class="about-content-card"><i class="flaticon-help"></i>
+                                    <h3>分享知识·互助问答</h3>
+                                    <p>认识很多黑客大佬，写WP，互助分享</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--我们的网站结束-->
+
+    <!--参加赛事-->
+    <!--开发规范：尽量保证赛事的div同样的高度，请适当加入br标签-->
+    <section class="services-area pt-100 pb-70">
+        <div class="container">
+            <div class="section-title text-center"><span class="sp-color1">参加赛事</span>
+                <h2>主要参加的CTF赛事</h2>
+                <p class="margin-auto">比赛环境 ： 断网环境，通过网线连接 <br>
+                    CTF类型 ： Web题、PHP代码审计、杂项题、逆向题、加密题、网络安全法知识
+                    每道题都有一血机制，解题快的前三名会有额外加分 <br>
+                    AWD类型 ： 要懂php, python, linux, web基础知识
+                </p>
+            </div>
+            <div class="row pt-45">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="services-card"><i class="flaticon-consultant"></i>
+                        <h3><a>强网杯</a></h3>
+                        <p>
+                            强网杯”网络安全挑战赛是面向国内信息安全企业（团队）和高等院校的一次国家级网络安全赛事，旨在通过激烈的网络竞赛对抗，培养和提高国家网络安全保障能力和水平，发现网络安全领域优秀人才，提升全民网络空间的安全意识和能力水平。邀请国内优秀信息安全企业和高等院校参加，为他们提供展示能力和水平的竞技舞台 </p>
+                        <a href="https://www.ichunqiu.com/2021qwb" class="learn-btn" target="_blank">官方网站 <i
+                                class='bx bx-chevron-right'></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="services-card"><i class="flaticon-consulting"></i>
+                        <h3><a>双元杯网络安全大赛</a></h3>
+                        <p>双元杯网络安全大赛是由山东省双元教育自主组织的CTF赛制比赛。
+                            比赛以“求真，提升，进步”为目标，鼓励更多的学生参与其中，不断发掘自身学习潜力，加强学习交流合作。比赛采用团体赛方式，持续一天，比赛内容涵盖网络安全知识的掌握和综合运用、攻防实战应用水平、网络安全问题解决能力、团队协作能力等</p>
+                        <a class="learn-btn">暂无官方网站 <i class='bx bx-chevron-right'></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="services-card"><i class="flaticon-web-development"></i>
+                        <h3><a>内蒙古网络安全省赛</a></h3>
+                        <p>内蒙古网络安全省赛旨在培养参赛选手的网络安全技能，强化选手处理网络安全事件的应急能力，发现优秀技术人才，推动自治区网络安全人才队伍建设，增强网络安全自主防御能力。<br>
+                            决赛采用攻防兼备(AWD)赛制，主要考察了参赛选手网络安全攻防实操能力、脆弱性发现以及风险评估能力和系统安全防护能力 </p>
+                        <a class="learn-btn">暂无官方网站 <i class='bx bx-chevron-right'></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="services-card"><i class="flaticon-stats"></i>
+                        <h3><a>HCTF</a></h3>
+                        <p>
+                            杭州电子科技大学信息安全协会已有七年历史，曾经出征DEFCON,BCTF等大型比赛并取得优异成绩，同时协会还有大量有影响力的软件作品。协会内部成员由热爱黑客技术和计算机技术的一些在校大学生组成，有多个研究方向，主要有渗透，逆向，内核，web等多个研究方向。至今已经成功举办6次CTF比赛</p>
+                        <br>
+                        <a class="learn-btn">暂无官方网站 <i class='bx bx-chevron-right'></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="service-shape"><img src="{% static 'assets/images/shape/service-shape1.png' %}" alt="Images"></div>
+    </section>
+    <!--参加赛事结束-->
+
+    <!--荣耀时刻-->
+    <section class="work-process-area pt-100 pb-70">
+        <div class="container">
+            <div class="section-title text-center"><span class="sp-color2">我们的荣誉</span>
+                <h2>荣誉时刻</h2>
+            </div>
+            <div class="row pt-45">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-project"></i>
+                        <h3>第一届双元杯网络安全大赛</h3>
+                        <p>团体银牌（第2名）</p>
+                        <div class="number">01</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>内蒙古网络安全省赛</h3>
+                        <p>团体第2名/团体第12名<br>决赛未开始</p>
+                        <div class="number">02</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>第十二届蓝桥杯程序设计竞赛</h3>
+                        <p>C/C++组自治区一等奖</p>
+                        <div class="number">03</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>2021年“高教杯”数学建模竞赛</h3>
+                        <p>自治区三等奖</p>
+                        <div class="number">04</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>内蒙古CCPC大学生程序设计竞赛</h3>
+                        <p>自治区三等奖</p>
+                        <div class="number">05</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>奇安信安全服务认证工程师</h3>
+                        <p>天眼，椒图</p>
+                        <div class="number">06</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>奇安信安全服务认证工程师</h3>
+                        <p>基础安全服务</p>
+                        <div class="number">07</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="work-process-card"><i class="flaticon-chip"></i>
+                        <h3>字节跳动第三届青训营</h3>
+                        <p>进阶班学员</p>
+                        <div class="number">08</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--荣耀时刻结束-->
+
+    <!--协会简介-->
+    <div class="counter-area pb-70">
+        <div class="container">
+            <div class="section-title text-center"><span class="sp-color2">内蒙古科技大学网络安全协会</span>
+                <h2>协会简介</h2>
+                <p>
+                    培养德、智、体等全面发展，掌握自然科学、人文社会科学等基础知识，具有扎实的网络空间安全领域的基础理论与专业知识，具有突出的实践动手与创新能力的网络空间安全专门人才。培养的毕业生能够从事网络空间安全领域的科学研究、安全技术开发与运维、安全管理、法律法规等方面的工作</p>
+            </div>
+            <div class="row pt-45">
+                <div class="col-lg-3 col-6 col-md-3">
+                    <div class="counter-another-content"><i class="flaticon-web-development"></i>
+                        <h3>50000+</h3>
+                        <span>代码库</span></div>
+                </div>
+                <div class="col-lg-3 col-6 col-md-3">
+                    <div class="counter-another-content"><i class="flaticon-consulting-1"></i>
+                        <h3>100+</h3>
+                        <span>协会成员</span></div>
+                </div>
+                <div class="col-lg-3 col-6 col-md-3">
+                    <div class="counter-another-content"><i class="flaticon-startup"></i>
+                        <h3>10+</h3>
+                        <span>协会老师（含学生）</span></div>
+                </div>
+                <div class="col-lg-3 col-6 col-md-3">
+                    <div class="counter-another-content"><i class="flaticon-tick"></i>
+                        <h3>100+</h3>
+                        <span>提供CTF军火库工具</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="counter-shape">
+            <div class="shape1"><img src="{% static 'assets/images/shape/shape1.png' %}" alt="Images"></div>
+            <div class="shape2"><img src="{% static 'assets/images/shape/shape2.png' %}" alt="Images"></div>
+        </div>
+    </div>
+    <!--协会简介结束-->
+
+    <!--QQ号展示-->
+    <div class="call-us-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="call-contact">
+                        <h3>昆仑云安全团队</h3>
+                        <div class="call-btn">微信公众号：昆仑云安全</div>
+                        <h3>加入内蒙古科技大学网络安全协会</h3>
+                        <div class="call-btn">QQ群号：137670583</div>
+                        <h3>我们更推荐您同时加入内蒙古科技大学ACM程序设计协会</h3>
+                        <div class="call-btn">QQ群号：147154718</div>
+                        <a class="default-btn btn-bg-two border-radius-5">我想要成为网站开发人员</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="call-us-img">
+                        <div class="call-shape">
+                            <div class="shape1"><img src="{% static 'assets/images/call-us/call-shap2.png' %}"
+                                                     alt="Images">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--QQ号展示结束-->
+
+    <!--我们的留言版-->
+    <section class="clients-area pt-100 pb-70">
+        <div class="container">
+            <div class="section-title text-center"><span class="sp-color2">留言</span>
+                <h2>我们的留言板</h2>
+            </div>
+            <div class="clients-slider owl-carousel owl-theme pt-45">
+                <div class="clients-content">
+                    <div class="content"><img src="{% static 'assets/images/clients-img/clients-img1.gif' %}"
+                                              alt="Images">
+                        <i class='bx bxs-quote-alt-left'></i>
+                        <h3>dahezhiquan</h3>
+                        <span>网站开发者</span></div>
+                    <p>通宵学习，你才能变得更强👍👍👍</p>
+                </div>
+                <div class="clients-content">
+                    <div class="content"><img src="{% static 'assets/images/clients-img/clients-img2.jpg' %}"
+                                              alt="Images">
+                        <i class='bx bxs-quote-alt-left'></i>
+                        <h3>你特别好</h3>
+                        <span>网站开发者</span></div>
+                    <p>哈喽，IMUSTCTF越来越强。</p>
+                </div>
+                <div class="clients-content">
+                    <div class="content"><img src="{% static 'assets/images/clients-img/clients-img3.jpg' %}"
+                                              alt="Images">
+                        <i class='bx bxs-quote-alt-left'></i>
+                        <h3>yueyue</h3>
+                        <span>网站铁粉</span></div>
+                    <p>希望IMUSTCTF早日成长为imust学子和爱好安全技术人员练习的平台。
+                        希望开发者我的小郭子可以在最好的年纪做最热爱的事情，努力经营好自己开发的第一个网站，我是IMUSTCTF的脑残粉哦~✌</p>
+                </div>
+                <div class="clients-content">
+                    <div class="content"><img src="{% static 'assets/images/clients-img/clients-img4.jpg' %}"
+                                              alt="Images">
+                        <i class='bx bxs-quote-alt-left'></i>
+                        <h3>昆仑云安全</h3>
+                        <span>网站赞助</span></div>
+                    <p>欢迎关注我们！学习黑客技术</p>
+                </div>
+                <div class="clients-content">
+                    <div class="content"><img src="{% static 'assets/images/clients-img/clients-img5.jpg' %}"
+                                              alt="Images">
+                        <i class='bx bxs-quote-alt-left'></i>
+                        <h3>永远追风筝的人</h3>
+                        <span>网站铁粉</span></div>
+                    <p>IMUSTCTF为我打开了网络安全世界的大门，现在拿到奇安信渗透岗的offer，不忘初心，特来还愿！</p>
+                </div>
+            </div>
+        </div>
+        <div class="client-circle">
+            <div class="client-circle-1">
+                <div class="circle"></div>
+            </div>
+            <div class="client-circle-2">
+                <div class="circle"></div>
+            </div>
+            <div class="client-circle-3">
+                <div class="circle"></div>
+            </div>
+            <div class="client-circle-4">
+                <div class="circle"></div>
+            </div>
+            <div class="client-circle-5">
+                <div class="circle"></div>
+            </div>
+            <div class="client-circle-6">
+                <div class="circle"></div>
+            </div>
+            <div class="client-circle-7">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </section>
+    <!--我们的留言版结束-->
+
+{% endblock %}
+

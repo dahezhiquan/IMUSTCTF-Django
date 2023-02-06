@@ -1,0 +1,227 @@
+<!doctype html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>题目详情 - {{ questionData.0.0 }}</title>
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+    <!-- 网站logo图片 -->
+    <!-- bootstrap css link -->
+    <link rel="stylesheet" href="{% static 'assetsflag/css/bootstrap.min.css' %}">
+
+    <!-- main style -->
+    <link rel="stylesheet" href="{% static 'assetsflag/css/flagstyle.css' %}">
+</head>
+<body>
+
+<!-- flag来喽！ -->
+<section class="footer-section bg bg_img">
+    <div class="footer-element"><a href=""><img src="{% static 'assetsflag/images/play.png' %}" alt="help"></a></div>
+    <div class="footer-element-one"><img src="{% static 'assetsflag/images/footer/footer-element-one.png' %}"
+                                         alt="element"></div>
+    <div class="footer-element-two"><img src="{% static 'assetsflag/images/footer/footer-element-two.png' %}"
+                                         alt="element"></div>
+    <div class="footer-element-three"><img src="{% static 'assetsflag/images/footer/line1.png' %}" alt="element"></div>
+    <div class="footer-element-four"><img src="{% static 'assetsflag/images/footer/line1.png' %}" alt="element"></div>
+    <div class="footer-element-five"><img src="{% static 'assetsflag/images/footer/line9.png' %}" alt="element"></div>
+    <div class="footer-element-six"><img src="{% static 'assetsflag/images/footer/line9.png' %}" alt="element"></div>
+    <div class="footer-element-seven"><img src="{% static 'assetsflag/images/footer/line3.png' %}" alt="element"></div>
+    <div class="footer-element-eight"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element"></div>
+    <div class="footer-element-nine"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element"></div>
+    <div class="footer-element-ten"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element"></div>
+    <div class="footer-element-eleven"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element"></div>
+    <div class="footer-element-twelve"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element"></div>
+    <div class="footer-element-thirteen"><img src="{% static 'assetsflag/images/footer/manyline.png' %}" alt="element">
+    </div>
+    <div class="footer-element-fourteen"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element">
+    </div>
+    <div class="footer-element-fifteen"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element">
+    </div>
+    <div class="footer-element-sixteen"><img src="{% static 'assetsflag/images/footer/line5.png' %}" alt="element">
+    </div>
+    <div class="footer-element-seventeen"><img src="{% static 'assetsflag/images/footer/circle3.png' %}" alt="element">
+    </div>
+    <div class="footer-shape"><img src="{% static 'assetsflag/images/footer/dotline.png' %}" alt="element"></div>
+    <div class="container">
+        <div class="row">
+            {% for data in questionData %}
+                <div class="col-lg-12">
+                    <div class="footer-content">
+                        <h3 class="sub-title">{{ data.2 }}</h3>
+                        <h2 class="title" id="conTitle">{{ data.0 }}</h2>
+                        <form class="footer-form" onsubmit="return false" id="inflag">
+                            <input type="text" name="flag" placeholder="在此输入你的flag">
+                            <input type="submit" class="cmn-btn" onclick="fn('{{ data.0 }}')" id="conButton">
+                        </form>
+                        <span id="ajax-content"></span>
+                        <script>
+                            function fn(title) {  // 这里需要设置一下js onclick事件
+                                $.ajax({
+                                    url: "/testflag/",
+                                    data: {
+                                        'title': title,
+                                        'flag' : $('#inflag').serialize(),
+                                        'type' : '{{ data.2 }}'
+                                    },
+                                    success: function (return_data) {
+                                        $('#ajax-content').html(return_data);
+                                        if (return_data == '正确'){
+                                            var obj = document.getElementById("conTitle");
+                                            obj.style.cssText= "color: greenyellow";
+                                        }else {
+                                            var obj = document.getElementById("conTitle");
+                                            obj.style.cssText= "color: red";
+                                        }
+                                    }
+                                })
+                            }
+                        </script>
+                        <p>{{ data.1 }}</p><br/>
+                        <p>本题分值：{{ data.9 }}</p>
+                    </div>
+                    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center">
+                        {% if data.3 == 'wuwuwu' %}
+                            <div class="footer-btn">
+                                <a class="cmn-btn">本题无附件</a>
+                            </div>
+                        {% else %}
+                            <div class="footer-btn">
+                                <a href="{{ data.3 }}" class="cmn-btn">下载题目附件</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- flag走了 -->
+
+<section class="join-section bg pt-120 pb-120">
+    <div class="join-element-one"><img src="{% static 'assetsflag/images/join/icon-1.png' %}" alt="icon"></div>
+    <div class="join-element-two"><img src="{% static 'assetsflag/images/join/icon-2.png' %}" alt="icon"></div>
+    <div class="join-element-three"><img src="{% static 'assetsflag/images/join/icon-3.png' %}" alt="icon"></div>
+    <div class="join-element-four"><img src="{% static 'assetsflag/images/join/icon-4.png' %}" alt="icon"></div>
+    <div class="join-element-five"><img src="{% static 'assetsflag/images/join/icon-5.png' %}" alt="icon"></div>
+    <div class="join-element-six"><img src="{% static 'assetsflag/images/join/icon-6.png' %}" alt="icon"></div>
+    <div class="join-element-seven"><img src="{% static 'assetsflag/images/join/icon-7.png' %}" alt="icon"></div>
+    <div class="join-element-eight"><img src="{% static 'assetsflag/images/join/icon-5.png' %}" alt="icon"></div>
+    <div class="join-element-nine"><img src="{% static 'assetsflag/images/join/icon-6.png' %}" alt="icon"></div>
+    <div class="join-element-ten"><img src="{% static 'assetsflag/images/join/icon-7.png' %}" alt="icon"></div>
+    <div class="join-element-eleven"><img src="{% static 'assetsflag/images/join/icon-5.png' %}" alt="icon"></div>
+    <div class="join-element-twelve"><img src="{% static 'assetsflag/images/join/icon-6.png' %}" alt="icon"></div>
+    <div class="join-element-thirteen"><img src="{% static 'assetsflag/images/join/icon-7.png' %}" alt="icon"></div>
+    <div class="join-element-fourteen"><img src="{% static 'assetsflag/images/join/icon-5.png' %}" alt="icon"></div>
+    <div class="join-element-fifteen"><img src="{% static 'assetsflag/images/join/icon-6.png' %}" alt="icon"></div>
+    <div class="join-element-sixteen"><img src="{% static 'assetsflag/images/join/icon-7.png' %}" alt="icon"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="section-header">
+                    <h2 class="section-title">题目数据</h2>
+                </div>
+            </div>
+        </div>
+        {% for data in questionData %}
+            <div class="row justify-content-center">
+                <span class="counter-item mb-30">
+                    <span class="counter-content">
+                        <span class="odo-area">
+                            <span class="odo-title odometer" data-odometer-final="{{ data.7 }}">0</span>
+                        </span>
+                    </span>
+                    <p>提交数</p>
+                </span>
+                <span class="counter-item mb-30">
+                    <span class="counter-content">
+                        <span class="odo-area">
+                            <span class="odo-title odometer" data-odometer-final="{{ data.8 }}">0</span>
+                        </span>
+                    </span>
+                    <p>通过数</p>
+                </span>
+                <span class="counter-item mb-30">
+                    <span class="counter-content">
+                        <span class="odo-area">
+                            <span class="odo-title odometer" data-odometer-final="{{ rightRate }}">0</span>
+                        </span>
+                    </span>
+                    <p>正答率</p>
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="pricing-section bg pt-120" id="plan">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="section-header">
+                    <h2 class="section-title">本题名人榜</h2>
+                    <p>江山代有才人出,各领风骚数百年</p>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-item-area">
+            {% for data in questionData %}
+                <div class="row justify-content-center mb-30-none">
+                    <div class="col-lg-4 col-md-6 col-sm-8 mb-30">
+                        <div class="pricing-item">
+                            <div class="pricing-element"><img src="{% static 'assetsflag/images/pricing-element.png' %}"
+                                                              alt="element"></div>
+                            <div class="pricing-header text-center"><span class="sub-title">一血</span>
+                                <h2 class="title">{{ data.4 }}</h2>
+                                <span class="month">唯我独尊</span></div>
+                            <div class="pricing-btn"><a href="#0" class="cmn-btn">主页</a></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-8 mb-30">
+                        <div class="pricing-item">
+                            <div class="pricing-element"><img src="{% static 'assetsflag/images/pricing-element.png' %}"
+                                                              alt="element"></div>
+                            <div class="pricing-header text-center"><span class="sub-title">二血</span>
+                                <h2 class="title">{{ data.5 }}</h2>
+                                <span class="month">傲视群雄</span></div>
+                            <div class="pricing-btn"><a href="#0" class="cmn-btn">主页</a></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-8 mb-30">
+                        <div class="pricing-item">
+                            <div class="pricing-element"><img src="{% static 'assetsflag/images/pricing-element.png' %}"
+                                                              alt="element"></div>
+                            <div class="pricing-header text-center"><span class="sub-title">三血</span>
+                                <h2 class="title">{{ data.6 }}</h2>
+                                <span class="month">展露头角</span></div>
+                            <div class="pricing-btn"><a href="#0" class="cmn-btn">主页</a></div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- jquery -->
+<script src="{% static 'assetsflag/js/jquery-3.6.0.js' %}"></script>
+<!-- magnific-popup js -->
+<script src="{% static 'assetsflag/js/jquery.magnific-popup.js' %}"></script>
+<!-- counterup js -->
+<script src="{% static 'assetsflag/js/jquery.counterup.min.js' %}"></script>
+<!-- datepicker js -->
+<script src="{% static 'assetsflag/js/datepicker.min.js' %}"></script>
+<!-- viewport js -->
+<script src="{% static 'assetsflag/js/viewport.jquery.js' %}"></script>
+
+<!-- wow js file -->
+<script src="{% static 'assetsflag/js/wow.min.js' %}"></script>
+<script src="{% static 'assetsflag/js/swiper.min.js' %}"></script>
+<script src="{% static 'assetsflag/js/plugin.js' %}"></script> <!-- paroller js -->
+<script src="{% static 'assetsflag/js/jquery.paroller.min.js' %}"></script>
+<!-- main -->
+<script src="{% static 'assetsflag/js/main.js' %}"></script>
+
+</body>
+</html>
