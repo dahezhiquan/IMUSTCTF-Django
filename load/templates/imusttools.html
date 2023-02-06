@@ -1,0 +1,98 @@
+{% extends "toolsnav.html" %}
+{% load static %}
+{% block title %}
+    ICP备案信息查询
+{% endblock %}
+{% block cssList %}
+    <link rel="stylesheet" href="{% static 'assets/css/icpstyle.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="contact-form-area pt-100 pb-70">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>ICP备案信息查询</h2>
+            </div>
+            <div class="row pt-45">
+                <div class="col-lg-8">
+                    <div class="contact-form">
+                        <form id="contactForm" onsubmit="return false">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>请在此输入域名信息 <span>*</span></label>
+                                        <input type="text" name="url" id="name" class="form-control" required
+                                               data-error="Please Enter url" placeholder="域名来喽~~~">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <!--
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label>2 <span>*</span></label>
+                                    <input type="text" name="2" id="email" class="form-control" required data-error="Please Enter Your 2" placeholder="222">
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label>3 <span>*</span></label>
+                                    <input type="text" name="3" id="phone_number" required data-error="Please Enter Your 3" class="form-control" placeholder="333">
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label>4 <span>*</span></label>
+                                    <input type="text" name="4" id="msg_subject" class="form-control" required data-error="Please Enter Your 4" placeholder="444">
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                              -->
+                                <!--
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>明文/密文 <span>*</span></label>
+                                        <textarea name="inpass" class="form-control" id="message" cols="30" rows="8"
+                                                  required data-error="您好未输入明文/密文哦" placeholder="明文/密文"></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                -->
+                                <div class="col-lg-12 col-md-12 text-center">
+                                    <button type="submit" class="default-btn btn-bg-two border-radius-50"
+                                            onclick="fn()">查询 <i
+                                            class='bx bx-chevron-right'></i></button>
+                                    <script>
+                                        function fn() {  // 这里需要设置一下js onclick事件
+                                            $.ajax({
+                                                url: "/load/resimusttools/",
+                                                data: {
+                                                    'url': $('#contactForm').serialize()
+                                                },
+                                                success: function (return_data) {
+                                                    document.getElementById("resicp").innerHTML = return_data;
+                                                }
+                                            })
+                                        }
+                                    </script>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <!--
+                                    <button type="submit" class="default-btn btn-bg-two border-radius-50">加密 <i
+                                            class='bx bx-chevron-right'></i></button>
+                                     -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-info mr-20" style="position: absolute;">
+                    <p style="font-size: 20px;" id="resicp">这里哦</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/><br/><br/><br/>
+{% endblock %}

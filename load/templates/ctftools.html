@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>军火库 - IMUSTCTF</title>
+
+    <!--网站logo图片 -->
+    <link rel="shortcut icon" href="http://101.42.155.61/static/logo.png">
+
+    <!--输入密码页面CSS-->
+    <link rel="stylesheet" href="{% static 'css/dialog.css' %}">
+    <!-- 引入框架 -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- 引入tool中的icon -->
+    <link rel="stylesheet" href="{% static 'tool/font/iconfont.css' %}">
+    <!-- 引入常规样式 -->
+    <link rel="stylesheet" href="{% static 'css/tool.css' %}">
+    <link rel="stylesheet" href="{% static 'css/li-bgc-color.css' %}">
+
+    <!-- 下载逻辑-JS，此部分必须放在head里 -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+    <!--输入密码formJS-->
+    <script src="{% static 'js/dialog.min.js' %}"></script>
+
+</head>
+
+<body>
+
+<!-- 顶部内容 -->
+<div class="container">
+    <h2 class="page-header">
+        <div class="row">
+            <div class="col-xs-3">{{ typePage }}工具</div>
+            <div class="col-xs-4 text-right pull-right"><a href="/">回到首页</a></div>
+        </div>
+    </h2>
+</div>
+<!-- 顶部内容结束 -->
+
+<!-- 导航 -->
+<div class="container tool-nav">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="" id="misc"><a href="/load/ctftools/?type=misc">misc工具</a></li>
+        <li role="presentation" class="" id="web"><a href="/load/ctftools/?type=web">web工具</a></li>
+        <li role="presentation" class="" id="crypto"><a href="/load/ctftools/?type=crypto">crypto工具</a></li>
+        <li role="presentation" class="" id="re"><a href="/load/ctftools/?type=re">re工具</a></li>
+        <li role="presentation" class="" id="src"><a href="/load/ctftools/?type=src">漏洞src平台</a></li>
+        <li role="presentation" class="" id="code"><a href="/load/ctftools/?type=code">编程IDE</a></li>
+        <li role="presentation" class="" id="programmer"><a href="/load/ctftools/?type=programmer">程序员之家</a></li>
+    </ul>
+</div>
+<!-- 导航结束 -->
+<!--设置顶部选项卡变色-->
+<script>
+    document.getElementById('{{ typePage }}').className = 'active';
+</script>
+<!--设置顶部选项卡变色结束-->
+<!-- 软件工具明细 -->
+<div class="container">
+    <!-- 工具列表 -->
+    <span class="glyphicon glyphicon-tags" style="margin:15px 0">  {{ typePage }}工具</span>
+    <div class="row text-center">
+        {% for tool in resList %}
+            {% if tool.4 == 0 %}
+                <div class="col-md-4 col-xs-12 col-sm-6 tool-li">
+                    <a href="/load/upload/?toolname={{ tool.0 }}" target="_blank">
+                        <div class="tool-li-li li-bgc-{{ tool.2 }}"><i class="iconfont icon-{{ tool.3 }}"></i></div>
+                    </a>
+                    <div class="text-left" style="margin-top:10px">{{ tool.0 }}</div>
+                    <div class="text-left text-color-height">{{ tool.1 }}</div>
+                </div>
+            {% else %}
+                <div class="col-md-4 col-xs-12 col-sm-6 tool-li">
+                    <div class="tool-li-li li-bgc-{{ tool.2 }}" id="{{ tool.5 }}" onclick="topFunction()">
+                        <i class="iconfont icon-{{ tool.3 }}"></i>
+                        <script type="text/javascript">
+                            $("#{{ tool.5 }}").dialog({
+                                aid: "{{ tool.0 }}",
+                                title: "请输入密码",
+                                type: 0,
+                                easyClose: true,
+                                form: [{description: "密码", type: "text", name: "toolpassword", value: ""}],
+                                submit: function (data) {
+                                    console.log(data);
+                                }
+                            })//data是表单收集的数据
+                        </script>
+                    </div>
+                    <div class="text-left" style="margin-top:10px">{{ tool.0 }}(需要密码)</div>
+                    <div class="text-left text-color-height">{{ tool.1 }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    <!-- 工具列表结束 -->
+</div>
+
+</body>
+
+
+{% if message == "密码错误" %}
+    <script>
+        alert("{{message}}");
+        window.location.href = "/load/ctftools/?type={{ checktype }}"
+    </script>
+{% endif %}
+
+<!--输入密码时回到页面顶部-->
+<script>
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+</html>
